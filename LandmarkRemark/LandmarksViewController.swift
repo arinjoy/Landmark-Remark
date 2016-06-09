@@ -113,14 +113,14 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
          
          Therefore, if a user searches for a landmarks based on keywords, the reesult set would have all matchig landmarks based on the text in user name or note. 
          An Australian user may see results from American users too. This could be inconvenient to zoom out and zoom in to another country and that might not be necessary at all.
-         If the user is only concerend with landmarks within a sepcific boundary, he can choose either 1km, 10km radius. In that case, the geo-spatial searches would
+         If the user is only concerend with landmarks within a sepcific boundary, he can choose either 1km, 10km, 100km radius. In that case, the geo-spatial searches would
          checking for that boundary only to help/guide the user with relevant landamarks only (not too many irrelevant ones which are too far from the user)
          */
         
         let preferences = NSUserDefaults.standardUserDefaults()
         if preferences.objectForKey("BOUNDARY_PREFERENCE") == nil {
             // default search strategy is the entire planet
-            boundarySegmentedControl.selectedSegmentIndex = 2
+            boundarySegmentedControl.selectedSegmentIndex = 3
             preferences.setInteger(2, forKey: "BOUNDARY_PREFERENCE")
             preferences.synchronize()
         }
@@ -140,7 +140,8 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
         switch boundarySegmentedControl.selectedSegmentIndex {
             case 0: viewModel.selectedBoundary = .ONE_KM
             case 1: viewModel.selectedBoundary = .TEN_KM
-            case 2: viewModel.selectedBoundary = .ENTIRE_PLANET
+            case 2: viewModel.selectedBoundary = .HUNDRED_KM
+            case 3: viewModel.selectedBoundary = .ENTIRE_PLANET
             default: break
         }
         
@@ -220,7 +221,8 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
         switch self.boundarySegmentedControl.selectedSegmentIndex {
             case 0 : viewModel.selectedBoundary = BoundaryRange.ONE_KM
             case 1 : viewModel.selectedBoundary = BoundaryRange.TEN_KM
-            case 2 : viewModel.selectedBoundary = BoundaryRange.ENTIRE_PLANET
+            case 2 : viewModel.selectedBoundary = BoundaryRange.HUNDRED_KM
+            case 3 : viewModel.selectedBoundary = BoundaryRange.ENTIRE_PLANET
             default: break
         }
         
@@ -408,6 +410,7 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
                 switch self.viewModel.selectedBoundary {
                     case .ONE_KM : distance = "1 km"
                     case .TEN_KM : distance = "10 km"
+                    case .HUNDRED_KM : distance = "100 km"
                     default: break
                 }
                 message = "\(countVal) landmarks located after searching \(distance) radius from your current location."
@@ -475,7 +478,7 @@ extension LandmarksViewController: CLLocationManagerDelegate {
             mapView.addAnnotation(annotation)
             
             // if the location update is happening for the first time after view load, call the delegate to fetch all the landmarks from backend
-            //
+            // by default (0, 0) location is used to start with before any location updates happen
             if viewModel.latestUpdatedLocation.coordinate.latitude == 0 && viewModel.latestUpdatedLocation.coordinate.longitude == 0
             {
                 viewModel.latestUpdatedLocation = userLocation
@@ -571,7 +574,10 @@ extension LandmarksViewController: MKMapViewDelegate {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: 0, y: -5)
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+                let disclosureButton = UIButton(frame: CGRectMake(0, 0, 40, 24))
+                disclosureButton.setImage(Icon.detailDisclosure, forState: UIControlState.Normal)
+                
+                view.rightCalloutAccessoryView =   disclosureButton as UIView //UIButton(type: <#T##UIButtonType#>) //Icon.detailDisclosure as UIView //UIButton(type: .DetailDisclosure) as UIView
                 view.rightCalloutAccessoryView?.tintColor = Color.darkGreenColor
                 view.rightCalloutAccessoryView?.tintAdjustmentMode = .Normal
                 view.centerOffset = CGPointMake(0, -25)

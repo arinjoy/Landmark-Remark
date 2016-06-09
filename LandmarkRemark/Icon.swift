@@ -19,4 +19,5 @@ struct Icon {
     static let myLandmarkAnnotationImage = UIImage(named: "Landmark-mine")
     static let updateLocationEnabledImage =  UIImage(named: "Current-location-enable")
     static let updateLocationDisabledImage =  UIImage(named: "Current-location-disable")
+    static let detailDisclosure =  UIImage(named: "Detail-Disclosure")
 }

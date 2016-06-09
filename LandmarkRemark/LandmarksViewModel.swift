@@ -22,7 +22,7 @@ public protocol LandmarksViewModelDelegate: class {
  */
 enum BoundaryRange: Double {
     
-    case ONE_KM = 1.0, TEN_KM = 10.0, ENTIRE_PLANET = 9999.00
+    case ONE_KM = 1.0, TEN_KM = 10.0, HUNDRED_KM = 100.0, ENTIRE_PLANET = 9999.00
 }
 
 
@@ -51,7 +51,7 @@ public class LandmarksViewModel: NSObject {
     var latestUpdatedLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
     var currentUserName = ""
     
-    // deafult selection boundary is the entire planet
+    // default selection boundary is the entire planet
     var selectedBoundary: BoundaryRange = BoundaryRange.ENTIRE_PLANET
     
     // new initializer
