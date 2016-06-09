@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Login Signup View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController modalTransitionStyle="flipHorizontal" id="BYZ-38-t0r" customClass="LoginSignupViewController" customModule="LandmarkRemark" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="dKL-L3-rVp" userLabel="Background Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="3re-PN-gfG" userLabel="Logo Image View">
+                                <rect key="frame" x="38" y="50" width="300" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="LGh-fc-DOk"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3Pz-ad-YJC" userLabel="Login Area Stack View">
+                                <rect key="frame" x="48" y="310" width="280" height="202"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MHS-8K-x5a" userLabel="Username">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="JZ0-7V-5fy"/>
+                                            <constraint firstAttribute="height" constant="40" id="bmt-tL-fiP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RCw-Ol-8T0" userLabel="Password">
+                                        <rect key="frame" x="0.0" y="60" width="280" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="L7h-un-QD4"/>
+                                            <constraint firstAttribute="width" constant="280" id="kmy-IC-5Ka"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHN-zF-I5P">
+                                        <rect key="frame" x="66" y="120" width="148" height="22"/>
+                                        <state key="normal" image="Dont have account"/>
+                                        <connections>
+                                            <action selector="noAccountClickedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uah-DM-YxA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RE0-m0-NCv">
+                                        <rect key="frame" x="30" y="162" width="220" height="40"/>
+                                        <state key="normal" image="Login"/>
+                                        <connections>
+                                            <action selector="loginOrSignupAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rel-YI-bcT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=regular" spacing="30"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Pz-ad-YJC" firstAttribute="top" secondItem="3re-PN-gfG" secondAttribute="bottom" constant="60" id="5bU-lu-jnE"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dKL-L3-rVp" secondAttribute="bottom" id="5fH-ut-Sp0"/>
+                            <constraint firstItem="dKL-L3-rVp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NCT-x7-XYf"/>
+                            <constraint firstAttribute="trailing" secondItem="dKL-L3-rVp" secondAttribute="trailing" id="Pwb-UW-Mjd"/>
+                            <constraint firstItem="3re-PN-gfG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SlG-eb-Oja"/>
+                            <constraint firstItem="3re-PN-gfG" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="XO6-eX-JKL"/>
+                            <constraint firstItem="3Pz-ad-YJC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ecV-aw-JzB"/>
+                            <constraint firstItem="3re-PN-gfG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="gX3-Fc-Pw8"/>
+                            <constraint firstItem="dKL-L3-rVp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ggI-D3-oCj"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="dontHaveAccountButton" destination="aHN-zF-I5P" id="XL3-EX-Ju3"/>
+                        <outlet property="loginAreaTopConstraint" destination="5bU-lu-jnE" id="nKC-k5-bwe"/>
+                        <outlet property="loginOrSignupButton" destination="RE0-m0-NCv" id="y4B-Hz-kRp"/>
+                        <outlet property="logoImageView" destination="3re-PN-gfG" id="uvW-3B-WK9"/>
+                        <outlet property="logoTopContraint" destination="gX3-Fc-Pw8" id="aBv-2U-cwQ"/>
+                        <outlet property="passwordTextField" destination="RCw-Ol-8T0" id="WFu-4s-Ri1"/>
+                        <outlet property="usernameTextField" destination="MHS-8K-x5a" id="78t-Az-j0W"/>
+                        <segue destination="cXM-ob-Gm5" kind="show" identifier="loadMapPageSegue" id="jpP-De-y7C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="383.5" y="-456.5"/>
+        </scene>
+        <!--Landmark View Controller-->
+        <scene sceneID="cf1-ft-FLB">
+            <objects>
+                <viewController title="Landmarks View Controller" modalTransitionStyle="crossDissolve" id="rwO-19-gJ9" userLabel="Landmark View Controller" customClass="LandmarksViewController" customModule="LandmarkRemark" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B0M-5S-Otc"/>
+                        <viewControllerLayoutGuide type="bottom" id="i9X-Z2-ETd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NAq-KS-qcg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fwg-YN-UZJ" userLabel="Search Controller View">
+                                <rect key="frame" x="-1" y="64" width="376" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="QmZ-Ov-izP"/>
+                                </constraints>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jZ2-sl-cuM">
+                                <rect key="frame" x="0.0" y="108" width="375" height="334"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbN-FS-uno" userLabel="Show CurrentLocation Button">
+                                <rect key="frame" x="325" y="362" width="35" height="35"/>
+                                <state key="normal" image="Current-location-enable"/>
+                                <connections>
+                                    <action selector="toggleUpdateCurrentLocation:" destination="rwO-19-gJ9" eventType="touchUpInside" id="XkN-MD-v9o"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hcV-eM-CNC" userLabel="Boundary Segment Control">
+                                <rect key="frame" x="107" y="404" width="161" height="29"/>
+                                <color key="backgroundColor" red="0.90623961103723405" green="0.88192366365370933" blue="0.79431570628884396" alpha="0.94611531825153372" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="1 km"/>
+                                    <segment title="10 km"/>
+                                    <segment title="Global"/>
+                                </segments>
+                                <color key="tintColor" red="0.55263593291505275" green="0.55586145279255328" blue="0.35494462118161385" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="boundaryChangeAction:" destination="rwO-19-gJ9" eventType="valueChanged" id="nSj-pJ-Zmf"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyf-I7-G5M" userLabel="Save Landmark Button">
+                                <rect key="frame" x="77" y="462" width="220" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="Save Landmark"/>
+                                <connections>
+                                    <action selector="saveLandmarkAction:" destination="rwO-19-gJ9" eventType="touchUpInside" id="Zdq-GS-giQ"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="DF3-G6-TGA" userLabel="Name Hint Stack View">
+                                <rect key="frame" x="100" y="587" width="175" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KD-J5-NHb" userLabel="Hint Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="20"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                        <color key="textColor" red="0.13725490200000001" green="0.43529411759999997" blue="0.37254901959999998" alpha="0.69891919095092025" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;username&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgb-rf-U3R" userLabel="Username Label">
+                                        <rect key="frame" x="92" y="0.0" width="83" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="JDy-dW-ZeR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                        <color key="textColor" red="0.13725490200000001" green="0.43529411759999997" blue="0.37254901959999998" alpha="0.698919191" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.84230231110365483" green="0.92666431183510634" blue="0.8920909579794909" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Yyf-I7-G5M" firstAttribute="top" secondItem="jZ2-sl-cuM" secondAttribute="bottom" constant="20" id="C5N-ha-F2e">
+                                <variation key="heightClass=regular-widthClass=regular" constant="35"/>
+                            </constraint>
+                            <constraint firstItem="jZ2-sl-cuM" firstAttribute="top" secondItem="fwg-YN-UZJ" secondAttribute="bottom" id="CsU-5l-D6x"/>
+                            <constraint firstItem="rbN-FS-uno" firstAttribute="bottom" secondItem="jZ2-sl-cuM" secondAttribute="bottom" constant="-45" id="GYM-ht-mii"/>
+                            <constraint firstItem="rbN-FS-uno" firstAttribute="trailing" secondItem="jZ2-sl-cuM" secondAttribute="trailing" constant="-15" id="IIy-4k-F5m"/>
+                            <constraint firstItem="fwg-YN-UZJ" firstAttribute="width" secondItem="NAq-KS-qcg" secondAttribute="width" id="M9b-eO-xS0"/>
+                            <constraint firstItem="hcV-eM-CNC" firstAttribute="bottom" secondItem="jZ2-sl-cuM" secondAttribute="bottom" constant="-10" id="NLc-iL-Swz"/>
+                            <constraint firstItem="jZ2-sl-cuM" firstAttribute="height" secondItem="NAq-KS-qcg" secondAttribute="height" multiplier="0.5" id="Ut0-7f-eK4"/>
+                            <constraint firstItem="DF3-G6-TGA" firstAttribute="centerX" secondItem="NAq-KS-qcg" secondAttribute="centerX" id="VYZ-It-Vjl"/>
+                            <constraint firstItem="Yyf-I7-G5M" firstAttribute="centerX" secondItem="NAq-KS-qcg" secondAttribute="centerX" id="Wkf-t1-fB8"/>
+                            <constraint firstItem="jZ2-sl-cuM" firstAttribute="width" secondItem="NAq-KS-qcg" secondAttribute="width" id="beD-1N-1wO"/>
+                            <constraint firstItem="fwg-YN-UZJ" firstAttribute="top" secondItem="NAq-KS-qcg" secondAttribute="top" constant="64" id="csh-wM-skm"/>
+                            <constraint firstAttribute="bottom" secondItem="DF3-G6-TGA" secondAttribute="bottom" constant="60" id="gin-d8-VqG">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="fwg-YN-UZJ" firstAttribute="centerX" secondItem="NAq-KS-qcg" secondAttribute="centerX" id="hvK-tH-Q1Q"/>
+                            <constraint firstItem="Yyf-I7-G5M" firstAttribute="centerX" secondItem="jZ2-sl-cuM" secondAttribute="centerX" id="iig-i9-1VL"/>
+                            <constraint firstItem="jZ2-sl-cuM" firstAttribute="centerX" secondItem="NAq-KS-qcg" secondAttribute="centerX" id="nEn-Kp-emy"/>
+                            <constraint firstItem="hcV-eM-CNC" firstAttribute="centerX" secondItem="NAq-KS-qcg" secondAttribute="centerX" id="oJt-IU-8MF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Landmarks" id="pdH-Pe-DzE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="SZO-7Y-aCr">
+                            <connections>
+                                <action selector="refreshLandmarksAction:" destination="rwO-19-gJ9" id="KhO-EE-QUh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="ilJ-gm-eq9">
+                            <connections>
+                                <action selector="logoutAction:" destination="rwO-19-gJ9" id="eLR-dn-kx1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="boundarySegmentedControl" destination="hcV-eM-CNC" id="WAg-gS-aSx"/>
+                        <outlet property="currentLocationToggleButton" destination="rbN-FS-uno" id="y7U-8b-shx"/>
+                        <outlet property="logoutButton" destination="ilJ-gm-eq9" id="QfX-gp-ImM"/>
+                        <outlet property="mapView" destination="jZ2-sl-cuM" id="Vab-es-HXp"/>
+                        <outlet property="mapViewHeightConstraint" destination="Ut0-7f-eK4" id="sKg-tC-uUt"/>
+                        <outlet property="searchControllerHolderView" destination="fwg-YN-UZJ" id="1S8-W2-YvY"/>
+                        <outlet property="userNameLabel" destination="Kgb-rf-U3R" id="vN0-Qk-TgK"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="backToLoginScreenFromMapSegue" id="hdM-2h-3a4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2C-W4-ceS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1806.5" y="-835.5"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Ff5-8b-xRa">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="cXM-ob-Gm5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="H0V-Rz-RbP">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="sqW-A7-6eP" kind="relationship" relationship="viewControllers" id="KxE-UF-E4G"/>
+                        <segue destination="i67-Sd-1zg" kind="relationship" relationship="viewControllers" id="s2d-Gv-u6Z"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLo-H0-mcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844.5" y="-456.5"/>
+        </scene>
+        <!--Landmarks Navigation-->
+        <scene sceneID="7lA-ig-b2a">
+            <objects>
+                <navigationController title="Landmarks Navigation" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="sqW-A7-6eP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map View" image="Globe-line" selectedImage="Globe-filled" id="T4v-7X-g46"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QNM-Kf-s8c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Pu6-Kj-a79">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="rwO-19-gJ9" kind="relationship" relationship="rootViewController" id="b6R-AX-17q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zdd-nu-UMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1338.5" y="-835.5"/>
+        </scene>
+        <!--Listing Navigation-->
+        <scene sceneID="fbc-2Q-RE3">
+            <objects>
+                <navigationController title="Listing Navigation" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="i67-Sd-1zg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="List View" image="List-line" selectedImage="List-filled" id="bW2-bS-IqT"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FCw-lX-Ny6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Leg-2o-PUh" kind="relationship" relationship="rootViewController" id="7WR-im-y7c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ika-aF-iCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1338.5" y="-43.5"/>
+        </scene>
+        <!--List of Landmarks-->
+        <scene sceneID="7Fc-gL-jbU">
+            <objects>
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" modalTransitionStyle="crossDissolve" clearsSelectionOnViewWillAppear="NO" id="Leg-2o-PUh" customClass="ListingViewController" customModule="LandmarkRemark" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jQD-U1-vER">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LandmarkCustomCell" rowHeight="100" id="Xe4-Qf-faW">
+                                <rect key="frame" x="0.0" y="92" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xe4-Qf-faW" id="q4Q-0v-cZR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Leg-2o-PUh" id="pCQ-aG-Ng1"/>
+                            <outlet property="delegate" destination="Leg-2o-PUh" id="MpH-qT-MND"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="List of Landmarks" id="4hB-VD-Jca">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="p5q-yY-XaT" userLabel="Logout">
+                            <connections>
+                                <action selector="logOutAction:" destination="Leg-2o-PUh" id="Dpv-Tz-zCK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="00B-lo-kpS">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Pull to Refresh">
+                                <attributes>
+                                    <color key="NSColor" red="0.4047652572352779" green="0.48668134973404253" blue="0.44756626550778655" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="13" name="AvenirNext-Regular"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                            <fragment content="...">
+                                <attributes>
+                                    <font key="NSFont" size="13" name="AvenirNext-Regular"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <connections>
+                            <action selector="refreshFromNetowrk:" destination="Leg-2o-PUh" eventType="valueChanged" id="LlC-bn-77T"/>
+                        </connections>
+                    </refreshControl>
+                    <connections>
+                        <outlet property="logoutButton" destination="p5q-yY-XaT" id="buI-2g-qth"/>
+                        <outlet property="refeshControl" destination="00B-lo-kpS" id="UXH-OL-48p"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="backToLoginScreenFromListSegue" id="Cgv-ir-S71"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s7N-A4-x2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1827.5" y="-43.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Background" width="466" height="617"/>
+        <image name="Current-location-enable" width="35" height="35"/>
+        <image name="Dont have account" width="148" height="12"/>
+        <image name="Globe-filled" width="28" height="28"/>
+        <image name="Globe-line" width="28" height="28"/>
+        <image name="List-filled" width="29" height="27"/>
+        <image name="List-line" width="27" height="27"/>
+        <image name="Login" width="220" height="40"/>
+        <image name="Logo" width="164" height="169"/>
+        <image name="Save Landmark" width="220" height="40"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Cgv-ir-S71"/>
+    </inferredMetricsTieBreakers>
+</document>
