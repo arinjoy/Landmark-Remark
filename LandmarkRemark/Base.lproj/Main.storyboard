@@ -125,8 +125,8 @@
                                     <action selector="toggleUpdateCurrentLocation:" destination="rwO-19-gJ9" eventType="touchUpInside" id="XkN-MD-v9o"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="hcV-eM-CNC" userLabel="Boundary Segment Control">
-                                <rect key="frame" x="107" y="404" width="161" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="hcV-eM-CNC" userLabel="Boundary Segment Control">
+                                <rect key="frame" x="68" y="404" width="239" height="29"/>
                                 <color key="backgroundColor" red="0.90623961103723405" green="0.88192366365370933" blue="0.79431570628884396" alpha="0.94611531825153372" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="1 km"/>
