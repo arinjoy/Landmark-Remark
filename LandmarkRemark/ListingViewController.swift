@@ -145,7 +145,7 @@ class ListingViewController: UITableViewController, ListingViewModelDelegate {
             let annotation = viewModel.landmarks[indexPath.row]
             // when a selection happens on table row call, show an alert but customise the alert and its actions depending on the
             // owner/creator of that landmark
-            let alertTitle = annotation.userName == viewModel.currentUserName ? "Your Landmark" : "By: \(annotation.userName)"
+            let alertTitle = annotation.userName == viewModel.currentUserName ? "Your Landmark" : "saved by: \(annotation.userName)"
             let alertController = Utils.createCustomAlert(alertTitle, message: annotation.title!)
         
             // To open up the Apple's Maps app with the location

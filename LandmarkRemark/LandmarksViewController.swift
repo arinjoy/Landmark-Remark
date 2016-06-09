@@ -592,7 +592,7 @@ extension LandmarksViewController: MKMapViewDelegate {
         // show call-out accessory view only if it's a network saved landmark
         if annotation.isCurrentUserIndicator == false {
             
-            let alertTitle = (annotation.userName == viewModel.currentUserName) ? "Your Landmark" : "User: \(annotation.userName)"
+            let alertTitle = (annotation.userName == viewModel.currentUserName) ? "Your Landmark" : "saved by: \(annotation.userName)"
             
             let alertController = Utils.createCustomAlert(alertTitle, message: annotation.title!)
             
