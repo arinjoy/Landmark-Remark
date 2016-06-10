@@ -55,11 +55,10 @@ The login mechanism is kept very simple with just username and password. Initial
 #####Login Screen:  
 ![Login Screen](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/login.png "Login Screen")  
 ![sign up info](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up_info.png "Sign up Info")
-![sign up](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up.png "Sign Up")  
+![sign up](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up.png "Sign Up")
 
-    
-      
-      
+
+
 #####Map View Screen:  
 The main map page has a large map in the center and a search bar on the top and a save button at the bottom.     
 
