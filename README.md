@@ -104,12 +104,12 @@ As an additional feature, a table view has been created to list out all the land
 ![List View](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/list_page.png "List View")  
 
 Each row in the table is tappable and it shows the same pop-up with details of the landmark and some possible actions to take, such as, open the Maps app to get driving direction, Edit/Delete the landmark etc.  
+
 ![List View detail popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/list_view_detail.png "List View detail popup")  
 
 A user can also use left-swipe gesture to delete a landmark (only applicable to those rows which has purple colour pins, i.e. user's own landmark).  
 
 ![Left swipe delete](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/left_swipe_delete.png "Left swipe delete")  
-
 
 Also a _“Pull to Refresh”_ control is added to refresh the landmarks from network and it performs geo-spatial search from user current location, showing nearest to the fatherst with a distance hint (eg. _just here, less 20 m away, 12.5 m away, 345.65 km away_) on each cell.  
 
