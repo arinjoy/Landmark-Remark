@@ -105,15 +105,47 @@ As an additional feature, a table view has been created to list out all the land
 
 Each row in the table is tappable and it shows the same pop-up with details of the landmark and some possible actions to take, such as, open the Maps app to get driving direction, Edit/Delete the landmark etc.  
 
-![Left swipe delete](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/left_swipe_delete.png "Left swipe delete")  
 ![List View detail popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/list_view_detail.png "List View detail popup")  
 
-A user can also use left-swipe gesture to delete a landmark (only applicable to those rows which has purple colour pins, i.e. users own landmark).
+A user can also use left-swipe gesture to delete a landmark (only applicable to those rows which has purple colour pins, i.e. user's own landmark).  
+
+![Left swipe delete](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/left_swipe_delete.png "Left swipe delete")  
+
+Also a _“Pull to Refresh”_ control is added to refresh the landmarks from network and it performs geo-spatial search from user current location, showing nearest to the fatherst with a distance hint (eg. _just here, less 20 m away, 12.5 m away, 345.65 km away_) on each cell.  
+
+![Pull to refresh](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/pull_to_refresh.png "Pull to refresh")  
+
+Finally, the user can logout anytime by clicking the _X_ button on the navigation bar and it brings a confirmation dialog in in Action Sheet style.  
+
+![Logout dialog](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/logout.png "Logout dialog") 
 
 
+***
+### Level of effort and time estimates
+This app was built on part-time basis (a few hours a day) for five days. Following is the approximate break down of time spent in man-hours for various aspects of the design and developement process.
 
+| Aspect                          |Approximate Time|
+| ------------------------------------ |:---------:|
+| Backend setup with Parse & Heroku    | 1.0 hour  |
+| App arechitecture planning           | 1.0 hour  |
+| Coding for the core service layer    | 2.0 hours |
+| Coding for the view models           | 2.5 hours |
+| Coding for the view controllers      | 8.0 hours |
+| User interface design in XCode       | 1.5 hours |
+| Graphic design in Sketch             | 1.5 hour  |
+| Code commenting and documentation    | 2.5 hour  |
+| ReadMe.md documentation on Github    | 2.0 hours |
+| **Total**                            | **22 hours**  |
 
-
+***
+### Issues & Limitations
+There are a few issues with the app that can be improved.
+  * The M-V-VM pattern has been used widely throughout the project, however, there is one view-model called _AnnotationViewModel_ which deviates from its therotical definition of a view-model. In this instance, it has been combined with the view code and subclassed from _MKAnnotation_. Due to simplicity of the project it has been used as a shortcut approach only. 
+  * The delegate based communication between view-models and view-controllers can be improved with better solutions(eg. ReactiveCocoa)
+  * As an added feature a list view has been created but it's view-controllers uses very similar set code like the other LandmarksViewController. Perhaps the code can be modulaized a bit more.
+  * The UX and UI design for the app is very limited and basic. With more time better UX and can be designed. For example, the searching of the landmarks and user zooming/panning into a location within the map, while the user is already moving can be improved and a better UX design is required for that.
+  * Ideally a user should provide an email address for signup process and _"Forgot Password"_ feature should be available in production ready app.
+  
 
 
 
