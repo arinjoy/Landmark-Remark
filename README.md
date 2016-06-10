@@ -32,7 +32,7 @@ From the above explicit requirements/ functionalities the following implicit req
 -	Users should be able to refresh the list of landmarks from the internet with some sort of control because the app has a real-time aspect of multiple users creating many landmarks at the same time
 
 
-## 1. Architecture:
+## 1.  Architecture:
 
 This app has deigned using well-known Model-View-ViewModel (MVVM) pattern to provide loose coupling between separate layers and provide a clear separation of concerns between them. It is also useful for maintainability and it also avoids the Massive-View controllers problem.
 
@@ -43,4 +43,10 @@ Typically the project structure has the followings:
   4.	***View-Controllers*** – The controllers that directly interact with the UI and manage the UI state. The code for Views and View-Controllers have similar goals and they are commonly categorised into one category  
 
 The communication between view-models and view-controllers can happen in many different ways - delegates, callback blocks, notifications, KVO, target/action event observers. Each of this approach has its own pros and cons. My personal preference is to use ReactiveCocoa to handle them in a clean and efficient way. However, due to strict requirements of this assignment for not to use any non-apple library/framework, I refrained from using ReactiveCocoa. I have chosen traditional ***delegate*** based approach to achieve the communication between view-models and view-controllers. 
+
+***
+## 2.  Backend Infrastructure:
+
+Well-known Parse backend has been used. Since parse is shutting down their core services, I have used their recommended way of creating a NodeJS Parse Server on Heroku and hosting an instance of MongoDB on Heroku on free-to-use tier. The mobile app connects to this Parse server on Heroku to use the Parse specific API from the Swift code. The companion Parse SDK is also being used in this project as a Cocoapod. 
+
 
