@@ -53,7 +53,7 @@ Well-known Parse backend has been used. Since parse is shutting down their core 
 The login mechanism is kept very simple with just username and password. Initially, a user would not have an account but he can sign-up by clicking the “Don’t have account” option and the screen toggles into the sign-up mode. Sign-up is easy with just username and password and for simplicity there is no email address and verification involved so that user can get started as soon as possible.
 
 #####Login Screen:
-![Login Screen](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/login.png "Login Screen")
+![Login Screen](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/login.png "Login Screen")  
 ![sign up info](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up_info.png "Sign up Info")
 ![sign up](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up.png "Sign Up")
 
