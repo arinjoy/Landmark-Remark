@@ -37,10 +37,10 @@ From the above explicit requirements/ functionalities the following implicit req
 This app has deigned using well-known Model-View-ViewModel (MVVM) pattern to provide loose coupling between separate layers and provide a clear separation of concerns between them. It is also useful for maintainability and it also avoids the Massive-View controllers problem.
 
 Typically the project structure has the followings:  
-1.	Services – The core of the app that talks to the backend side via network calls and provide interface for CRUD operations, and also includes the authentication related services  
-2.	Models – The data model to represent an entity. eg. Landmark  
-3.	View-Models – The model representing the data necessary for the view to display itself; but it’s also responsible for gathering, interpreting, and transforming that data by communicating with services layer  
-4.	View-Controllers – The controllers that directly interact with the UI and manage the UI state. The code for Views and View-Controllers have similar goals and they are commonly categorised into one category  
+  1.	***Services*** – The core of the app that talks to the backend side via network calls and provide interface for CRUD operations, and also includes the authentication related services  
+  2.	***Models*** – The data model to represent an entity. eg. Landmark  
+  3.	***View-Models*** – The model representing the data necessary for the view to display itself; but it’s also responsible for gathering, interpreting, and transforming that data by communicating with services layer  
+  4.	***View-Controllers*** – The controllers that directly interact with the UI and manage the UI state. The code for Views and View-Controllers have similar goals and they are commonly categorised into one category  
 
-The communication between view-models and view-controllers can happen in many different ways - delegates, callback blocks, notifications, KVO, target/action event observers. Each of this approach has its own pros and cons. My personal preference is to use ReactiveCocoa to handle them in a clean and efficient way. However, due to strict requirements of this assignment for not to use any non-apple library/framework, I refrained from using ReactiveCocoa. I have chosen traditional delegate based approach to achieve the communication between view-models and view-controllers. 
+The communication between view-models and view-controllers can happen in many different ways - delegates, callback blocks, notifications, KVO, target/action event observers. Each of this approach has its own pros and cons. My personal preference is to use ReactiveCocoa to handle them in a clean and efficient way. However, due to strict requirements of this assignment for not to use any non-apple library/framework, I refrained from using ReactiveCocoa. I have chosen traditional ***delegate*** based approach to achieve the communication between view-models and view-controllers. 
 
