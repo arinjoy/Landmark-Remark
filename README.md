@@ -127,17 +127,26 @@ This app was built on part-time basis (a few hours a day) for five days. Followi
 | Aspect                          |Approximate Time|
 | ------------------------------------ |:---------:|
 | Backend setup with Parse & Heorku    | 1.0 hour  |
-| App arechitecture planning           | 0.5 hour  |
+| App arechitecture planning           | 1.0 hour  |
 | Coding for the core service layer    | 2.0 hours |
 | Coding for the view models           | 4.0 hours |
-| Coding for the view controllers      | 8.5 hours |
+| Coding for the view controllers      | 9.5 hours |
 | User interface design in XCode       | 1.5 hours |
 | Graphic design works in Sketch       | 1.5 hour  |
 | Code commenting and documentation    | 2.5 hour  |
-| ReadMe.md documentation on Github    | 1.5 hours |
-| **Total**                          | **23 hours**  |
+| ReadMe.md documentation on Github    | 2.0 hours |
+| **Total**                          | **25 hours**  |
 
-
+***
+### Issues & Limitations
+There are a few issues with the app that can be improved.
+  * The M-V-VM pattern has been used widely throughout the project, however, there is one view-model called _AnnotationViewModel_ which deviates form its therotical definition of a view-model. In this instance, it has been combined with the view code and  subclassed from _MKAnnotation_. Due to simplicity of the project it has been used as a shortcut approach only. 
+  * The delegate based communication between view-models and view-controllers can be improved with better solutions(eg. ReativeCocoa)
+  * As an added feature a list view has been created but it's view-controllers uses very similar set code like the other LandmarksViewController. Perhaps the code can be modulaized a bit more.
+  * The UX and UI design for the app is very limited and basic. With more time better UX and can be designed.
+  * The searching of the landmarks and user zooming/panning into a location within the map can be improved and a better UX design is required for that.
+  * Ideally a user should provide an email address for signup process and _"Forgot Password"_ feature should be available in production ready app.
+  
 
 
 
