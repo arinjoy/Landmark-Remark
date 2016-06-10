@@ -84,6 +84,12 @@ Similar pop-up also appears when the user edits the note text of his own landmar
 ![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/save_landmark.png "Save landmark")
 ![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Save landmark")  
 
+The app constantly updates the user location and sets the map region within 500m from the latest location. If the user is moving fast, he would see the map is being animated with his movement. To stop the map from auto-updating, he can tap the arrow head icon on the bottom-right side and the map stops updating user location for temporarily and which makes its easier for the user to search for landmarks which are far from him and pan/ zoom into that location. At anytime the user can tap that button to bring back auto location update and map animation.  
+
+For example, when a search is performed/cancelled this button automatically toggles itself off/on to help the user to zoom easily into the found landmark location (helpful if the user is moving and not static).  
+
+![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Extra controls")
+
 
 
 
