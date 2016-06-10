@@ -574,10 +574,9 @@ extension LandmarksViewController: MKMapViewDelegate {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: 0, y: -5)
-                let disclosureButton = UIButton(frame: CGRectMake(0, 0, 40, 24))
+                let disclosureButton = UIButton(frame: CGRectMake(0, 0, 27, 18))
                 disclosureButton.setImage(Icon.detailDisclosure, forState: UIControlState.Normal)
-                
-                view.rightCalloutAccessoryView =   disclosureButton as UIView //UIButton(type: <#T##UIButtonType#>) //Icon.detailDisclosure as UIView //UIButton(type: .DetailDisclosure) as UIView
+                view.rightCalloutAccessoryView =   disclosureButton as UIView
                 view.rightCalloutAccessoryView?.tintColor = Color.darkGreenColor
                 view.rightCalloutAccessoryView?.tintAdjustmentMode = .Normal
                 view.centerOffset = CGPointMake(0, -25)
