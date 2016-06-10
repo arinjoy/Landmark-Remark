@@ -88,7 +88,7 @@ The app constantly updates the user location and sets the map region within 500m
 
 For example, when a search is performed/cancelled this button automatically toggles itself off/on to help the user to zoom easily into the found landmark location (helpful if the user is moving and not static).  
 
-![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/exrtra_controls.png "Extra controls")
+![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/extra_controls.png "Extra controls")
 
 
 
