@@ -128,14 +128,14 @@ This app was built on part-time basis (a few hours a day) for five days. Followi
 | ------------------------------------ |:---------:|
 | Backend setup with Parse & Heorku    | 1.0 hour  |
 | App arechitecture planning           | 0.5 hour  |
-| Coding for the core service layer    | 1.5 hours |
+| Coding for the core service layer    | 2.0 hours |
 | Coding for the view models           | 4.0 hours |
-| Coding for the view controllers      | 9.0 hours |
-| User interface design in XCode       | 2.5 hours |
-| Graphic design works in Sketch       | 1.0 hour  |
+| Coding for the view controllers      | 8.5 hours |
+| User interface design in XCode       | 1.5 hours |
+| Graphic design works in Sketch       | 1.5 hour  |
 | Code commenting and documentation    | 2.5 hour  |
-| ReadMe.md documentation on Github    | 2.0 hours |
-| **Total**                          | **24 hours**  |
+| ReadMe.md documentation on Github    | 1.5 hours |
+| **Total**                          | **23 hours**  |
 
 
 
