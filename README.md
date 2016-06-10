@@ -44,11 +44,11 @@ Typically the project structure has the followings:
 
 The communication between view-models and view-controllers can happen in many different ways - delegates, callback blocks, notifications, KVO, target/action event observers. Each of this approach has its own pros and cons. My personal preference is to use ReactiveCocoa to handle them in a clean and efficient way. However, due to strict requirements of this assignment for not to use any non-apple library/framework, I refrained from using ReactiveCocoa. I have chosen traditional ***delegate*** based approach to achieve the communication between view-models and view-controllers. 
 
-### 2.  Backend Infrastructure:
+### 2.  Backend Infrastructure
 
 Well-known Parse backend has been used. Since parse is shutting down their core services, I have used their recommended way of creating a NodeJS Parse Server on Heroku and hosting an instance of MongoDB on Heroku on free-to-use tier. The mobile app connects to this Parse server on Heroku to use the Parse specific API from the Swift code. The companion Parse SDK is also being used in this project as a Cocoapod. 
 
-### 3. User Interface Design:
+### 3. User Interface Design
 
 The login mechanism is kept very simple with just username and password. Initially, a user would not have an account but he can sign-up by clicking the “Don’t have account” option and the screen toggles into the sign-up mode. Sign-up is easy with just username and password and for simplicity there is no email address and verification involved so that user can get started as soon as possible.
 
