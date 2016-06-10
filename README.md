@@ -79,12 +79,16 @@ Tapping the annotation will provide additional alert pop-up with some actions. I
 ![Other landmark popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/other_landmark_popup.png "Other landmark popup")  
 
 To save a landmark the user provides the note text within a text field inside the alert pop-up.
-Similar pop-up also appears when the user edits the note text of his own landmark   
+Similar pop-up also appears when the user edits the note text of his own landmark.   
 
 ![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/save_landmark.png "Save landmark")
 ![Save Popup landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Save popup landmark")  
 
-The app constantly updates the user location and sets the map region within 500m from the latest location. If the user is moving fast, he would see the map is being animated with his movement. To stop the map from auto-updating, he can tap the arrow head icon on the bottom-right side and the map stops updating user location temporarily and which makes its easier for the user to search for landmarks which are far from him and pan/ zoom into that location. At anytime the user can tap that button to bring back auto location update and constant map animation.  
+The search bar is tappable and brings up the search control on the top and search is perfomed as soon 3 or more characters are typed. The search looks for landmarks based on the note and the username (case insensitive partial search). The scope buttons on the search controll _"All, Mine, Others"_ helps the user to further pinpoint his own landmarks or other's landmarks.  
+
+![Search bar](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/search_bar.png "Search bar") 
+
+The app constantly updates the user location and sets the map region of 500m from the latest location. If the user is moving fast, he would see the map is being animated with his movement. To stop the map from auto-updating, he can tap the arrow head icon on the bottom-right side and the map stops updating user location temporarily and which makes its easier for the user to search for landmarks which are far from him and pan/ zoom into that location. At anytime the user can tap that button to bring back auto location update and constant map animation.  
 
 For example, when a search is performed/cancelled this button automatically toggles itself off/on to help the user to zoom easily into the found landmark location (helpful if the user is moving and not static).  Search results are sorted using geo-spatial queries and the most nearest landmark is shown first and the map zooms into that nearest landmark automatically while making current user location update disabled temporarily. As soon as the _Cancel_ button is pressed on the on the search bar, the map brings back user current location and starts updating the location again.
 
