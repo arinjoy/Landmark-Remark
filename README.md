@@ -71,6 +71,15 @@ There are mainly two types of colour coding for the annotations:
 The current user location is shown with a human icon indicator which is also clickable like the other annotations.  
 
 ![Three Types of annotation](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/three_types_annotation.png "Annotations")
-![My own annotation](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/own_landmark.png "My own annotation")
+![My own annotation](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/own_landmark.png "My own annotation")  
+
+Tapping the annotation will provide additional alert pop-up with some actions. If it’s the user own landmark, then the user can Edit and Delete that as well.  
+
+
+![Own landmark popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/own_landmark_popup.png "Own landmark popup") 
+![Other landmark popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/own_landmark_popup.png "Other landmark popup")  
+
+
+
 
 
