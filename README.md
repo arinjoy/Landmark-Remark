@@ -66,10 +66,11 @@ The main map page has a large map in the center and a search bar on the top and 
 
 There are mainly two types of colour coding for the annotations:  
   * Purple: To display the user’s own landmarks  
-  * Maroon: To display landmarks created by other users
-  * 
+  * Maroon: To display landmarks created by other users  
+
 The current user location is shown with a human icon indicator which is also clickable like the other annotations.  
+
 ![Three Types of annotation](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/three_types_annotation.png "Annotations")
-![My own annotation](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/my_own_landmark.png "My own annotation")
+![My own annotation](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/own_landmark.png "My own annotation")
 
 
