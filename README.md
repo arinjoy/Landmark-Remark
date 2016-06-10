@@ -90,7 +90,7 @@ For example, when a search is performed/cancelled this button automatically togg
 
 ![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/extra_controls.png "Extra controls")
 
-Users can also set the boundary preference for the search results. For example, they may not be bothered to see the landmarks which are too far from them or in a different country for instance. They can tap the _"1 km, 10km, 100km, Global"_ segmented control and it prompts them with an alert. This preference is also saved within device for future launches of the app.  
+Users can also set the boundary preference for the search results. For example, they may not be bothered to see the landmarks which are too far from them or in a different country for instance. They can tap the _"1 km, 10km, 100km, Global"_ segmented control and it prompts them with an alert. This preference is also saved within the device for future launches of the app.  
 
   
   
@@ -98,6 +98,11 @@ Users can also set the boundary preference for the search results. For example, 
 As an additional feature, a table view has been created to list out all the landmarks in a table. There is a tab bar at the bottom and _List View_ option will show a table view. A very similar search mechanism is also applied to this list using a search bar at the top.  
 
 ![List View](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/list_page.png "List View")  
+
+Each row in the table is tappable and it shows the same pop-up with details of the landmark and some possible actions to take, such as, open the Maps app to get driving direction, Edit/Delete the landmark etc.
+
+A user can also use left-swipe gesture to delete a landmark (only applicable to those rows which has purple pins, i.e. users own landmark).
+
 
 
 
