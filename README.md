@@ -55,4 +55,8 @@ The login mechanism is kept very simple with just username and password. Initial
 #####Login Screen:
 ![Login Screen](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/login.png "Login Screen")
 
+                          |  
+:-------------------------:|:-------------------------:
+![sign up info](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up_info.png)  |  ![sign up](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up.png)
+
 
