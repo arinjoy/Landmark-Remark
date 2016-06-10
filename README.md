@@ -84,13 +84,13 @@ Similar pop-up also appears when the user edits the note text of his own landmar
 ![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/save_landmark.png "Save landmark")
 ![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Save landmark")  
 
-The app constantly updates the user location and sets the map region within 500m from the latest location. If the user is moving fast, he would see the map is being animated with his movement. To stop the map from auto-updating, he can tap the arrow head icon on the bottom-right side and the map stops updating user location for temporarily and which makes its easier for the user to search for landmarks which are far from him and pan/ zoom into that location. At anytime the user can tap that button to bring back auto location update and map animation.  
+The app constantly updates the user location and sets the map region within 500m from the latest location. If the user is moving fast, he would see the map is being animated with his movement. To stop the map from auto-updating, he can tap the arrow head icon on the bottom-right side and the map stops updating user location temporarily and which makes its easier for the user to search for landmarks which are far from him and pan/ zoom into that location. At anytime the user can tap that button to bring back auto location update and constant map animation.  
 
-For example, when a search is performed/cancelled this button automatically toggles itself off/on to help the user to zoom easily into the found landmark location (helpful if the user is moving and not static).  
+For example, when a search is performed/cancelled this button automatically toggles itself off/on to help the user to zoom easily into the found landmark location (helpful if the user is moving and not static).  Search results are sorted using geo-spatial queries and the most nearest landmark is shown first and the map zooms into that nearest landmark automatically while making current user location update disabled temporarily. As soon as the _Cancel_ button is pressed on the on the search bar, the map brings back user current location and starts updating the location again.
 
 ![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/extra_controls.png "Extra controls")
 
-Users can also set the boundary preference for the search results. For example, they may not be bothered to see the landmarks which are too far from them or in a different country for instance. They can tap the _"1 km, 10km, 100km, Gloabal"_ segmented control and it prompts them with an alert. This preference is also saved within device for future launches of the app.  
+Users can also set the boundary preference for the search results. For example, they may not be bothered to see the landmarks which are too far from them or in a different country for instance. They can tap the _"1 km, 10km, 100km, Global"_ segmented control and it prompts them with an alert. This preference is also saved within device for future launches of the app.  
 
 
 
