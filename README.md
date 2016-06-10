@@ -84,7 +84,7 @@ Similar pop-up also appears when the user edits the note text of his own landmar
 ![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/save_landmark.png "Save landmark")
 ![Save Popup landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Save popup landmark")  
 
-The search bar is tappable and brings up the search control on the top and search is perfomed as soon 3 or more characters are typed. The search looks for landmarks based on the note and the username (case insensitive partial search). The scope buttons on the search controll _"All, Mine, Others"_ helps the user to further pinpoint his own landmarks or other's landmarks.  
+The search bar is tappable and brings up the search control on the top and search is perfomed as soon 3 or more characters are typed. The search looks for landmarks based on the note and the username (case insensitive partial search). The scope buttons on the segemented control _"All, Mine, Others"_ helps the user to further pinpoint his own landmarks or other's landmarks.  
 
 ![Search bar](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/search_bar.png "Search bar") 
 
