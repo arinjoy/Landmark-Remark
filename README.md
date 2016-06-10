@@ -115,11 +115,9 @@ Also a _“Pull to Refresh”_ control is added to refresh the landmarks from ne
 
 ![Pull to refresh](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/pull_to_refresh.png "Pull to refresh")  
 
-Finally the user can log out by clicking the _X_ button on the navigation bar and  it brings a confirmation dialog in in Action Sheet style.  
+Finally, the user can logout anytime by clicking the _X_ button on the navigation bar and it brings a confirmation dialog in in Action Sheet style.  
 
-![Pull to refresh](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/pull_to_refresh.png "Pull to refresh") 
-
-![Logout dialog](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/pull_to_refresh.png "Logout dialog") 
+![Logout dialog](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/logout.png "Logout dialog") 
 
 
 
