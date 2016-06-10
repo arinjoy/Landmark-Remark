@@ -1,5 +1,5 @@
 # Landmark-Remark
-A simple iOS appto let the users save landmarks at their current locations and add note to that. Users can search for landmarks created by them and also by other users.
+A simple iOS app to let the users save landmarks at their current locations and add note to that. Users can search for landmarks created by them and also by other users.
 
 The explicit requirements are:  
 1.	As a user (of the application) I can see my current location on a map  
