@@ -119,6 +119,16 @@ Finally, the user can logout anytime by clicking the _X_ button on the navigatio
 
 ![Logout dialog](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/logout.png "Logout dialog") 
 
+***
+
+### Level of effort and time estimate
+Following is the break down of the level of efforts spent on this project.
+
+| Aspect of the app        | Approx time spent in hours |
+| ------------- |:-------------:|
+| col 3 is      | right-aligned |
+| col 2 is      | centered      |
+| zebra stripes | are neat      |
 
 
 
