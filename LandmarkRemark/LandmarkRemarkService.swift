@@ -108,10 +108,10 @@ class LandmarkRemarkService {
     /**
      To update a landmark object, i.e. to change the note text. Only the owner (who save it) can edit the note
      
-     - parameter landmarkId:        <#landmarkId description#>
-     - parameter newNote:           <#newNote description#>
-     - parameter currentLocation:   <#currentLocation description#>
-     - parameter completionHandler: <#completionHandler description#>
+     - parameter landmarkId:        The id of the landmark to be updated
+     - parameter newNote:           The new note to be updated
+     - parameter currentLocation:   The current location of the user
+     - parameter completionHandler: The completion block after asynchronous network call - to return the updated landmark instance or failure with reasons
      */
     func updateLandmark(landmarkId: String, newNote: String, currentLocation: CLLocation?, completionHandler: (landmark: Landmark?, error: NSError?) -> Void) {
         
