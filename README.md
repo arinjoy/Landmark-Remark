@@ -1,4 +1,4 @@
-# Landmark-Remark
+## Landmark-Remark
 A simple iOS app to let the users save landmarks at their current locations and add note to that. Users can search for landmarks created by them and also by other users.
 
 The explicit requirements are:  
@@ -56,5 +56,14 @@ The login mechanism is kept very simple with just username and password. Initial
 ![Login Screen](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/login.png "Login Screen")  
 ![sign up info](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up_info.png "Sign up Info")
 ![sign up](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up.png "Sign Up")
+
+The main map page has a large map in the center and a search bar on the top and a save button at the bottom.  
+![Map View](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/map_page.png "Map View page")
+
+There are mainly two types of colour coding for the annotations: 
+*-	Purple: To display the user’s own landmarks
+*-	Maroon: To display landmarks created by other users
+
+The current user location is shown with a human icon indicator which is also clickable like the other annotations.
 
 
