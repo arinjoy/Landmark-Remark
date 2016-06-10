@@ -9,7 +9,7 @@ The explicit requirements are:
 5.	As a user I have the ability to search for a note based on contained text or user­name  
 
 
-## Approach to the solution:
+## Approach to the solution
 
 From the above explicit requirements/ functionalities the following implicit requirements are recognised.
 -	To be able allow for multiple app users, backend persistence with a server is necessary
@@ -32,7 +32,7 @@ From the above explicit requirements/ functionalities the following implicit req
 -	Users should be able to refresh the list of landmarks from the internet with some sort of control because the app has a real-time aspect of multiple users creating many landmarks at the same time
 
 
-### 1.  Architecture:
+### 1.  Architecture
 
 This app has deigned using well-known Model-View-ViewModel (MVVM) pattern to provide loose coupling between separate layers and provide a clear separation of concerns between them. It is also useful for maintainability and it also avoids the Massive-View controllers problem.
 
@@ -91,6 +91,7 @@ For example, when a search is performed/cancelled this button automatically togg
 ![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/extra_controls.png "Extra controls")
 
 Users can also set the boundary preference for the search results. For example, they may not be bothered to see the landmarks which are too far from them or in a different country for instance. They can tap the _"1 km, 10km, 100km, Gloabal"_ segmented control and it prompts them with an alert. This preference is also saved within device for future launches of the app.  
+
 
 
 
