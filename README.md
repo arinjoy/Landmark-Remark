@@ -57,12 +57,15 @@ The login mechanism is kept very simple with just username and password. Initial
 ![sign up info](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up_info.png "Sign up Info")
 ![sign up](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/sign_up.png "Sign Up")
 
+
+
 The main map page has a large map in the center and a search bar on the top and a save button at the bottom.  
+
 ![Map View](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/map_page.png "Map View page")
 
 There are mainly two types of colour coding for the annotations: 
-*-	Purple: To display the user’s own landmarks
-*-	Maroon: To display landmarks created by other users
+  *Purple: To display the user’s own landmarks
+  *Maroon: To display landmarks created by other users
 
 The current user location is shown with a human icon indicator which is also clickable like the other annotations.
 
