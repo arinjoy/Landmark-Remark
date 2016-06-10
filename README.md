@@ -126,16 +126,16 @@ This app was built on part-time basis (a few hours a day) for five days. Followi
 
 | Aspect                          |Approximate Time|
 | ------------------------------------ |:---------:|
-| Backend setup with Parse & Heorku    | 1.0 hour  |
+| Backend setup with Parse & Heroku    | 1.0 hour  |
 | App arechitecture planning           | 1.0 hour  |
 | Coding for the core service layer    | 2.0 hours |
-| Coding for the view models           | 4.0 hours |
-| Coding for the view controllers      | 9.5 hours |
+| Coding for the view models           | 3.5 hours |
+| Coding for the view controllers      | 10.0 hours |
 | User interface design in XCode       | 1.5 hours |
-| Graphic design works in Sketch       | 1.5 hour  |
+| Graphic design in Sketch             | 1.5 hour  |
 | Code commenting and documentation    | 2.5 hour  |
 | ReadMe.md documentation on Github    | 2.0 hours |
-| **Total**                          | **25 hours**  |
+| **Total**                            | **25 hours**  |
 
 ***
 ### Issues & Limitations
