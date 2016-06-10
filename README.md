@@ -75,9 +75,15 @@ The current user location is shown with a human icon indicator which is also cli
 
 Tapping the annotation will provide additional alert pop-up with some actions. If it’s the user own landmark, then the user can Edit and Delete that as well.  
 
-
 ![Own landmark popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/own_landmark_popup.png "Own landmark popup") 
 ![Other landmark popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/own_landmark_popup.png "Other landmark popup")  
+To save a landmark the user provides the note text within a text field inside the alert pop-up.
+Similar pop-up also appears when the user edits the note text of his own landmark.   
+
+![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/save_landmark.png "Save landmark")
+![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Save landmark")  
+
+
 
 
 
