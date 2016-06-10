@@ -90,6 +90,8 @@ For example, when a search is performed/cancelled this button automatically togg
 
 ![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/extra_controls.png "Extra controls")
 
+Users can also set the boundary preference for the search results. For example, they may not be bothered to see the landmarks which are too far from them or in a different country for instance. They can tap the _"1 km, 10km, 100km, Gloabal"_ segmented control and it prompts them with an alert. This preference is also saved within device for future launches of the app.  
+
 
 
 
