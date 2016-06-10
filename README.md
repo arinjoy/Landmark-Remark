@@ -108,7 +108,14 @@ Each row in the table is tappable and it shows the same pop-up with details of t
 ![Left swipe delete](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/left_swipe_delete.png "Left swipe delete")  
 ![List View detail popup](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/list_view_detail.png "List View detail popup")  
 
-A user can also use left-swipe gesture to delete a landmark (only applicable to those rows which has purple colour pins, i.e. users own landmark).
+A user can also use left-swipe gesture to delete a landmark (only applicable to those rows which has purple colour pins, i.e. user's own landmark).  
+
+Also a _“Pull to Refresh”_ control is added to refresh the landmarks from network and it performs geo-spatial search from user current location, showing nearest to the fatherst with a distance hint (eg. _just here, less 20 m away, 12.5 m away, 345.65 km away_) on each cell.  
+
+![Pull to refresh](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/pull_to_refresh.png "Pull to refresh")  
+
+
+
 
 
 
