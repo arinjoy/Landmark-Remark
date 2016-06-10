@@ -121,7 +121,7 @@ Finally, the user can logout anytime by clicking the _X_ button on the navigatio
 
 ***
 
-### Level of effort and time estimate
+### Level of effort and time estimates
 This app was built on part-time basis (a few hours a day) for five days. Following is the approximate break down of time spent in man-hours for various aspects of the design and developement process.
 
 | Aspect                          |Approximate Time|
