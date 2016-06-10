@@ -82,7 +82,7 @@ To save a landmark the user provides the note text within a text field inside th
 Similar pop-up also appears when the user edits the note text of his own landmark   
 
 ![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/save_landmark.png "Save landmark")
-![Save landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Save landmark")  
+![Save Popup landmark](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/saving_popup.png "Save popup landmark")  
 
 The app constantly updates the user location and sets the map region within 500m from the latest location. If the user is moving fast, he would see the map is being animated with his movement. To stop the map from auto-updating, he can tap the arrow head icon on the bottom-right side and the map stops updating user location temporarily and which makes its easier for the user to search for landmarks which are far from him and pan/ zoom into that location. At anytime the user can tap that button to bring back auto location update and constant map animation.  
 
@@ -91,6 +91,13 @@ For example, when a search is performed/cancelled this button automatically togg
 ![Extra controls](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/extra_controls.png "Extra controls")
 
 Users can also set the boundary preference for the search results. For example, they may not be bothered to see the landmarks which are too far from them or in a different country for instance. They can tap the _"1 km, 10km, 100km, Global"_ segmented control and it prompts them with an alert. This preference is also saved within device for future launches of the app.  
+
+  
+  
+#####List View Screen:  
+As an additional feature, a table view has been created to list out all the landmarks in a table. There is a tab bar at the bottom and _List View_ option will show a table view. A very similar search mechanism is also applied to this list using a search bar at the top.  
+
+![List View](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/list_page.png "List View")  
 
 
 
