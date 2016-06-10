@@ -63,9 +63,9 @@ The main map page has a large map in the center and a search bar on the top and 
 
 ![Map View](https://github.com/arinjoy/Landmark-Remark/blob/master/Screenshots/map_page.png "Map View page")
 
-There are mainly two types of colour coding for the annotations: 
-  *Purple: To display the user’s own landmarks
-  *Maroon: To display landmarks created by other users
+There are mainly two types of colour coding for the annotations:  
+  * Purple: To display the user’s own landmarks  
+  * Maroon: To display landmarks created by other users
 
 The current user location is shown with a human icon indicator which is also clickable like the other annotations.
 
