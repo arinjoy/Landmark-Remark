@@ -122,17 +122,20 @@ Finally, the user can logout anytime by clicking the _X_ button on the navigatio
 ***
 
 ### Level of effort and time estimate
-This app was built on part-time basis (a few hours a day) for five days. Following is the approximate break down of various aspects of the design and developement process.
+This app was built on part-time basis (a few hours a day) for five days. Following is the approximate break down time spent in man-hours for various aspects of the design and developement process.
 
-| Aspect        |Approximate Time|
-| ------------- |:-------------:|
-| Backend setup with Parse    | 2 hours |
-| App arechitecture planning      | 0.5 hour      |
-| Coding for the core service layer  | 1.5 hours    |
-| Coding for the view models   | 3.5 hours    |
-| Coding for view controllers  | 5.5 hours    |
-| User interface design in XCode | 2.5 hours   |
-| Graphic design works in Sketch | 1.0 hour   |
+| Aspect                          |Approximate Time|
+| ------------------------------------ |:---------:|
+| Backend setup with Parse & Heorku    | 1.0 hour  |
+| App arechitecture planning           | 0.5 hour  |
+| Coding for the core service layer    | 1.5 hours |
+| Coding for the view models           | 4.0 hours |
+| Coding for the view controllers      | 9.0 hours |
+| User interface design in XCode       | 2.5 hours |
+| Graphic design works in Sketch       | 1.0 hour  |
+| Code commenting and documentation    | 2.5 hour  |
+| ReadMe.md documentation on Github    | 2.0 hours |
+| **Total**                          | **24 hours**  |
 
 
 
