@@ -122,13 +122,17 @@ Finally, the user can logout anytime by clicking the _X_ button on the navigatio
 ***
 
 ### Level of effort and time estimate
-Following is the break down of the level of efforts spent on this project.
+This app was built on part-time basis (a few hours a day) for five days. Following is the approximate break down of various aspects of the design and developement process.
 
-| Aspect of the app        | Approx time spent in hours |
+| Aspect        |Approximate Time|
 | ------------- |:-------------:|
-| col 3 is      | right-aligned |
-| col 2 is      | centered      |
-| zebra stripes | are neat      |
+| Backend setup with Parse    | 2 hours |
+| App arechitecture planning      | 0.5 hour      |
+| Coding for the core service layer  | 1.5 hours    |
+| Coding for the view models   | 3.5 hours    |
+| Coding for view controllers  | 5.5 hours    |
+| User interface design in XCode | 2.5 hours   |
+| Graphic design works in Sketch | 1.0 hour   |
 
 
 
