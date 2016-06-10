@@ -49,6 +49,7 @@ The communication between view-models and view-controllers can happen in many di
 Well-known Parse backend has been used. Since parse is shutting down their core services, I have used their recommended way of creating a NodeJS Parse Server on Heroku and hosting an instance of MongoDB on Heroku on free-to-use tier. The mobile app connects to this Parse server on Heroku to use the Parse specific API from the Swift code. The companion Parse SDK is also being used in this project as a Cocoapod. 
 
 ### 3. User Interface Design
+The app is suppoted in potrait mode only for all device families - iPhone 4s, 5, 5s, 6, 6s, 6Plus, 6Plus s, iPad, iPad mini, iPad Pro. The user interface is adaptive accross all these devices.  
 
 The login mechanism is kept very simple with just username and password. Initially, a user would not have an account but he can sign-up by clicking the “Don’t have account” option and the screen toggles into the sign-up mode. Sign-up is easy with just username and password and for simplicity there is no email address and verification involved so that user can get started as soon as possible.
 
@@ -145,8 +146,19 @@ There are a few issues with the app that can be improved.
   * As an added feature a list view has been created but it's view-controllers uses very similar set code like the other LandmarksViewController. Perhaps the code can be modulaized a bit more.
   * The UX and UI design for the app is very limited and basic. With more time better UX and can be designed. For example, the searching of the landmarks and user zooming/panning into a location within the map, while the user is already moving can be improved and a better UX design is required for that.
   * Ideally a user should provide an email address for signup process and _"Forgot Password"_ feature should be available in production ready app.
+  * Some efforts could be given to add  XC Unit tests to test different layers and their functionalities seprately. 
+  * An iOS simulator warning can be noticed only when running iPhone 6Plus. The error is "the item height must be less than the height of the UICollectionView minus the section insets top and bottom values, minus the content insets top and bottom values". This is a know simulator issue for iPhone 6Plus only but not for any other models.
   
 
+***
+### Demo users for testing
+The follwoing demo users already exists on the app and their login can be used for testing.  
 
+| username |password|
+| ------- |:-----:|
+| arinjoy | 12345  |
+| john    | 12345  |
+| emma    | 12345  |
+| david   | 12345  |
 
 
