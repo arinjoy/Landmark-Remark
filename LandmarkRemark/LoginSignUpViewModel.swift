@@ -12,24 +12,24 @@ import Parse
 public protocol LoginSignUpViewModelDelegate: class {
     func showInvalidUserName()
     func showInvalidPassword()
-    func loginSuccessWithUser(user: PFUser)
+    func loginSuccessWithUser(_ user: PFUser)
     func signupSuccess()
-    func operationFailureWithErrorMessage(title: String, message: String)
+    func operationFailureWithErrorMessage(_ title: String, message: String)
 }
 
 
 /// The view-model for the LoginSignup view-controller
-public class LoginSignUpViewModel  {
+open class LoginSignUpViewModel  {
     
     // public properties of the view-model exposed to its view-controller
-    public var userName: String = ""
-    public var  password: String = ""
+    open var userName: String = ""
+    open var  password: String = ""
     
     // The delgate of the view-model to call back / pass back information to the view-controller
-    public weak var delegate: LoginSignUpViewModelDelegate?
+    open weak var delegate: LoginSignUpViewModelDelegate?
     
     // reference to the Authentication service
-    private let authenticationService: UserAuthenticationService
+    fileprivate let authenticationService: UserAuthenticationService
     
     // new initializer
     public init(delegate: LoginSignUpViewModelDelegate) {
@@ -45,7 +45,7 @@ public class LoginSignUpViewModel  {
     /**
      The login mehtod
      */
-    public func login() {
+    open func login() {
         
         // checking for valid username and password string, and inform the view-controller
         if !isValidUserName() {
@@ -58,7 +58,7 @@ public class LoginSignUpViewModel  {
             // call to service layer
             // passing weak deleagte to break te retain cycle if any (for safety)
             // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html
-            authenticationService.loginUser(userName, password: password, completionHandler: { [weak delegate = self.delegate!] (user, error) in
+            authenticationService.loginUser(username: userName, password: password, completionHandler: { [weak delegate = self.delegate!] (user, error) in
                 
                 if user != nil {
                     // communicate with the view-controller and send the new logged-in user object
@@ -94,7 +94,7 @@ public class LoginSignUpViewModel  {
     /**
      The signup method
      */
-    public func signup() {
+    open func signup() {
         
         // checking for valid username and password string, and inform the view-controller
         if !isValidUserName() {
@@ -140,10 +140,10 @@ public class LoginSignUpViewModel  {
     /**
      To check for an acceptable username
      */
-    private func isValidUserName() -> Bool {
+    fileprivate func isValidUserName() -> Bool {
         do {
-            let regex = try NSRegularExpression(pattern: "^[A-Za-z]+([A-Za-z0-9-_.]){2,15}$", options: .CaseInsensitive)
-            return regex.firstMatchInString(userName, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, userName.characters.count)) != nil
+            let regex = try NSRegularExpression(pattern: "^[A-Za-z]+([A-Za-z0-9-_.]){2,15}$", options: .caseInsensitive)
+            return regex.firstMatch(in: userName, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, userName.characters.count)) != nil
         } catch {
             return false
         }
@@ -152,10 +152,10 @@ public class LoginSignUpViewModel  {
     /**
      To check for an acceptable password
      */
-    private func isValidPassword() -> Bool {
+    fileprivate func isValidPassword() -> Bool {
         do {
-            let regex = try NSRegularExpression(pattern: "^[A-Za-z0-9.!#$%&'*+/=?^_~-]{3,25}$", options: .CaseInsensitive)
-            return regex.firstMatchInString(password, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, password.characters.count)) != nil
+            let regex = try NSRegularExpression(pattern: "^[A-Za-z0-9.!#$%&'*+/=?^_~-]{3,25}$", options: .caseInsensitive)
+            return regex.firstMatch(in: password, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, password.characters.count)) != nil
         } catch {
             return false
         }

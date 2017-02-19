@@ -18,7 +18,7 @@ class LandmarkRemarkService {
      - parameter withinDistance:    The distance in kilometres to sarch for other landmarks from the current device location
      - parameter completionHandler: The completion block after asynchronous network call - to return the list of landmarks
      */
-    func retrieveAllLandmarks(currentLocation currentLocation: CLLocation? = nil, withinDistance: Double? = nil, completionHandler: (landmarks: [Landmark], error: NSError?) -> Void) {
+    func retrieveAllLandmarks(currentLocation: CLLocation? = nil, withinDistance: Double? = nil, completionHandler: @escaping (_ landmarks: [Landmark], _ error: NSError?) -> Void) {
         
         var landmarkResults:[Landmark] = [Landmark]()
         
@@ -28,7 +28,7 @@ class LandmarkRemarkService {
         query.limit = 900
         
         // Always try to load from network first and if not connected then from device cache
-        query.cachePolicy = .NetworkElseCache
+        query.cachePolicy = .networkElseCache
         
         // Inlcude the user objects who saved the landmark
         query.includeKey("savedBy")
@@ -49,10 +49,10 @@ class LandmarkRemarkService {
         }
         else {
             // by default order using the note text content, if no geo-spatial query is applied
-            query.orderByAscending("note")
+            query.order(byAscending: "note")
         }
         
-        query.findObjectsInBackgroundWithBlock { (objects, error) in
+        query.findObjectsInBackground { (objects, error) in
             if error == nil {
                 if let landmarks = objects {
                     for landmark in landmarks {
@@ -60,17 +60,17 @@ class LandmarkRemarkService {
                         let geoPoint = landmark["location"] as! PFGeoPoint
                         // if current location is known, calculate the distance info to display as a hint
                         if currentLocation != nil {
-                            let distance = PFGeoPoint(location: currentLocation).distanceInKilometersTo(geoPoint)
+                            let distance = PFGeoPoint(location: currentLocation).distanceInKilometers(to: geoPoint)
                             distanceText = self.generateDistanceHint(distance)
                         }
                         // convert the Parse landmark object to the data model and then append that into the list
                         landmarkResults.append(Landmark(dict: ServiceHelper.convertLandmarkObjectToDictionary(landmark), distance: distanceText))
                     }
                 }
-                completionHandler(landmarks: landmarkResults, error: nil)
+                completionHandler(landmarkResults, nil)
             }
             else {
-                completionHandler(landmarks: landmarkResults, error: error)
+                completionHandler(landmarkResults, error as NSError?)
             }
         }
     }
@@ -84,22 +84,21 @@ class LandmarkRemarkService {
      - parameter location:          The geo-location whther landmark is being added by the user
      - parameter completionHandler: The completion block after asynchronous network call - to return the created landmark instance or failure with reasons
      */
-    func createLandmark(user: PFUser, note: String, location: CLLocationCoordinate2D, completionHandler: (landmark: Landmark?, error: NSError?) -> Void) {
+    func createLandmark(_ user: PFUser, note: String, location: CLLocationCoordinate2D, completionHandler: @escaping (_ landmark: Landmark?, _ error: NSError?) -> Void) {
         
         let newlandmark = PFObject(className:"Landmark")
         newlandmark["savedBy"] = user
         newlandmark["note"] = note
         newlandmark["location"] = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
         
-        newlandmark.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
+        newlandmark.saveInBackground { (success: Bool, error: Error?) -> Void in
             if success {
                 // convert the Parse landmark object to data model
                 let resultLandmark = Landmark(dict: ServiceHelper.convertLandmarkObjectToDictionary(newlandmark), distance: "0 m away")
-                completionHandler(landmark: resultLandmark, error: nil)
+                completionHandler(resultLandmark, nil)
             }
             else {
-                completionHandler(landmark: nil, error: error)
+                completionHandler(nil, error as NSError?)
             }
         }
     }
@@ -113,17 +112,17 @@ class LandmarkRemarkService {
      - parameter currentLocation:   The current location of the user
      - parameter completionHandler: The completion block after asynchronous network call - to return the updated landmark instance or failure with reasons
      */
-    func updateLandmark(landmarkId: String, newNote: String, currentLocation: CLLocation?, completionHandler: (landmark: Landmark?, error: NSError?) -> Void) {
+    func updateLandmark(_ landmarkId: String, newNote: String, currentLocation: CLLocation?, completionHandler: @escaping (_ landmark: Landmark?, _ error: NSError?) -> Void) {
         
         let query = PFQuery(className: "Landmark")
         query.limit = 1
-        query.cachePolicy = .NetworkElseCache
+        query.cachePolicy = .networkElseCache
         // match the landmark object Id
         query.whereKey("objectId", equalTo: landmarkId)
         query.includeKey("savedBy")
         
         // find the object first
-        query.findObjectsInBackgroundWithBlock { (objects, loadError) in
+        query.findObjectsInBackground { (objects, loadError) in
             if loadError == nil {
                 if let objects = objects {
                     // must return a single object
@@ -132,35 +131,35 @@ class LandmarkRemarkService {
                         targetLandmark["note"] = newNote
                         
                         // saving back the new value
-                        targetLandmark.saveInBackgroundWithBlock({ (success, error) in
+                        targetLandmark.saveInBackground(block: { (success, error) in
                             if success {
                                 var distanceText: String? = nil
                                 // calculate the distance info
                                 if currentLocation != nil {
                                     let geoPoint = targetLandmark["location"] as! PFGeoPoint
-                                    let distance = PFGeoPoint(location: currentLocation).distanceInKilometersTo(geoPoint)
+                                    let distance = PFGeoPoint(location: currentLocation).distanceInKilometers(to: geoPoint)
                                     distanceText = self.generateDistanceHint(distance)
                                 }
                                 let resultLandmark = Landmark(dict: ServiceHelper.convertLandmarkObjectToDictionary(targetLandmark), distance: distanceText)
-                                completionHandler(landmark: resultLandmark, error: nil)
+                                completionHandler(resultLandmark, nil)
                             }
                             else {
-                                 completionHandler(landmark: nil, error: error)
+                                 completionHandler(nil, error as NSError?)
                             }
                         })
                     }
                     else {
                         // if no object was found and error is not nil either - this would never happen unless Parse gives incorrect structure
-                        completionHandler(landmark: nil, error: NSError(domain: "Landmark.domain", code: 503, userInfo: nil))
+                        completionHandler(nil, NSError(domain: "Landmark.domain", code: 503, userInfo: nil))
                     }
                 }
                 else {
                     // if no object was found and error is not nil either - this would never happen unless Parse gives incorrect structure
-                    completionHandler(landmark: nil, error: NSError(domain: "Landmark.domain", code: 503, userInfo: nil))
+                    completionHandler(nil, NSError(domain: "Landmark.domain", code: 503, userInfo: nil))
                 }
             }
             else {
-                completionHandler(landmark: nil, error: loadError)
+                completionHandler(nil, loadError as NSError?)
             }
         }
     }
@@ -172,36 +171,36 @@ class LandmarkRemarkService {
      - parameter landmarkId:        The object id of the landmark
      - parameter completionHanlder: The completion block after asynchronous network call - to indicate success or failure
      */
-    func deleteLandmark(landmarkId: String, completionHanlder: (success: Bool, error: NSError?) -> Void) {
+    func deleteLandmark(_ landmarkId: String, completionHanlder: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         
         let query = PFQuery(className: "Landmark")
         query.limit = 1
-        query.cachePolicy = .NetworkElseCache
+        query.cachePolicy = .networkElseCache
         
         // match the object using the object Id
         query.whereKey("objectId", equalTo: landmarkId)
         
-        query.findObjectsInBackgroundWithBlock { (objects, loadError) in
+        query.findObjectsInBackground { (objects: [PFObject]?, loadError: Error?) in
             if loadError == nil {
                 if let objects = objects {
                     if objects.count == 1 {
                         let targetLandmark = objects[0]
-                        targetLandmark.deleteInBackgroundWithBlock({ (success, deleteError) in
-                            completionHanlder(success: success, error: deleteError)
+                        targetLandmark.deleteInBackground(block: { (success: Bool, deleteError: Error?) in
+                            completionHanlder(success, deleteError as NSError?)
                         })
                     }
                     else {
                         // if no object was found and error is not nil either - this would never happen unless Parse gives incorrect structure
-                        completionHanlder(success: false, error: NSError(domain: "Landmark.domain", code: 505, userInfo: nil))
+                        completionHanlder(false, NSError(domain: "Landmark.domain", code: 505, userInfo: nil))
                     }
                 }
                 else {
                     // if no object was found and error is not nil either - this would never happen unless Parse gives incorrect structure
-                    completionHanlder(success: false, error: NSError(domain: "Landmark.domain", code: 505, userInfo: nil))
+                    completionHanlder(false, NSError(domain: "Landmark.domain", code: 505, userInfo: nil))
                 }
             }
             else {
-                completionHanlder(success: false, error: loadError)
+                completionHanlder(false, loadError as NSError?)
             }
         }
     }
@@ -219,7 +218,7 @@ class LandmarkRemarkService {
      
      - returns: The textual information to display in the UI
      */
-    func generateDistanceHint(distance: Double) -> String {
+    func generateDistanceHint(_ distance: Double) -> String {
     
         // if withing one km, check for less than 5m, 20m or 50m
         if distance < 1.0 {

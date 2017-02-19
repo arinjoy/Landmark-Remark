@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Mark: - UiApplicationDelegate
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         // customizing UI elements appreance globally
         self.customizeAppAppearance()
@@ -31,11 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // initialize the Parse configuration
-        Parse.initializeWithConfiguration(configuration)
+        Parse.initialize(with: configuration)
         
         let defaultACL = PFACL();
-        defaultACL.publicReadAccess = true
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
+        defaultACL.getPublicReadAccess = true
+        PFACL.setDefault(defaultACL, withAccessForCurrentUser:true)
         
         return true
     }
@@ -45,31 +45,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Private Helpers
     
-    private func customizeAppAppearance() {
+    fileprivate func customizeAppAppearance() {
         
         window?.tintColor =  Color.darkGreenColor
         
         // apply style on navigation bar
         UINavigationBar.appearance().barTintColor =  Color.darkGreenColor
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().tintAdjustmentMode = .Normal
-        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().tintAdjustmentMode = .normal
+        UINavigationBar.appearance().isTranslucent = false
         
         // apply style on title and bar buttons
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: Font.avenir18M!, NSForegroundColorAttributeName: UIColor.whiteColor()]
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Font.avenir16M!], forState: .Normal)
-        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
-        UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UINavigationBar.self]).tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().barStyle = UIBarStyle.Black
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: Font.avenir18M!, NSForegroundColorAttributeName: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Font.avenir16M!], for: UIControlState())
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = UIColor.white
+        UINavigationBar.appearance().barStyle = UIBarStyle.black
         
         // apply color on the text fields
-        UITextField.appearance().textColor = UIColor.darkGrayColor()
-        UIButton.appearance().tintColor =  UIColor.whiteColor() 
-        UIButton.appearance().tintAdjustmentMode = .Normal
+        UITextField.appearance().textColor = UIColor.darkGray
+        UIButton.appearance().tintColor =  UIColor.white 
+        UIButton.appearance().tintAdjustmentMode = .normal
         
-        UITabBar.appearance().backgroundColor = UIColor.whiteColor()
+        UITabBar.appearance().backgroundColor = UIColor.white
         UITabBar.appearance().tintColor = Color.darkGreenColor
-        UITabBar.appearance().translucent = true
+        UITabBar.appearance().isTranslucent = true
         
     }
 

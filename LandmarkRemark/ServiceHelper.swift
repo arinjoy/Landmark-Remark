@@ -19,7 +19,7 @@ class ServiceHelper {
      
      - returns: The dictionary object
      */
-    class func convertLandmarkObjectToDictionary(object: AnyObject) -> [String : AnyObject] {
+    class func convertLandmarkObjectToDictionary(_ object: AnyObject) -> [String : AnyObject] {
         
         var landmark = [String: AnyObject]()
         
@@ -29,12 +29,12 @@ class ServiceHelper {
         // A safety check only in case a column is deleted from Parse by accident
         if object.allKeys.count >= 4 {
             
-            landmark["landmarkId"] = object.objectId
-            landmark["note"] = object["note"] as? String
+            landmark["landmarkId"] = object.objectId as AnyObject?
+            landmark["note"] = object["note"] as? String as AnyObject?
             landmark["location"] = object["location"] as? PFGeoPoint
             landmark["savedByUserName"] = nil
             if let user = object["savedBy"] as? PFUser {
-                 landmark["savedByUserName"] = user["username"] as? String
+                 landmark["savedByUserName"] = user["username"] as? String as AnyObject?
             }
         }
         return landmark

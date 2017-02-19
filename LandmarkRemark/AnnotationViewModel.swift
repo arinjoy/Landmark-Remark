@@ -62,7 +62,7 @@ class AnnotationViewModel: NSObject, MKAnnotation {
     
     // Annotation callout opens this mapItem in Maps app
     func mapItem() -> MKMapItem {
-        let addressDict = [String(CNPostalAddressStreetKey): subtitle as! AnyObject]
+        let addressDict = [String(CNPostalAddressStreetKey): subtitle as AnyObject]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = title

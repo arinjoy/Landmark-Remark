@@ -13,28 +13,28 @@ import Parse
 /// The protocol definiton for ListingViewModel delegate, implemented by the Listing table-view-controller
 public protocol ListingViewModelDelegate: class {
     func logoutSuccess()
-    func getAllLandmarkWithSuccess(count: Int)
-    func landmarkUpdateWithSuccess(message: String)
-    func landmarDeleteWithSuccess(message: String, swipeDeleteIndex: Int)
-    func operationFailureWithErrorMessage(title: String, message: String)
+    func getAllLandmarkWithSuccess(_ count: Int)
+    func landmarkUpdateWithSuccess(_ message: String)
+    func landmarDeleteWithSuccess(_ message: String, swipeDeleteIndex: Int)
+    func operationFailureWithErrorMessage(_ title: String, message: String)
     func reloadLandmarks()
 }
 
 
 /// The view-model for the Listing table table-view-controller
-public class ListingViewModel  {
+open class ListingViewModel  {
     
     // view-model private proerties
     
     // To represent the current logged-in user (Parse backend provided class and manged by Parse itself)
-    private var user: PFUser? = nil
+    fileprivate var user: PFUser? = nil
     
     // The delgate of the view-model to call back / pass back information to the view-controller
-    public weak var delegate: ListingViewModelDelegate?
+    open weak var delegate: ListingViewModelDelegate?
     
     // reference to the necessary services
-    private let authenticationService: UserAuthenticationService
-    private let landmarkRemarkService: LandmarkRemarkService
+    fileprivate let authenticationService: UserAuthenticationService
+    fileprivate let landmarkRemarkService: LandmarkRemarkService
     
     
     // public properties accessed/altered by the view-controller to maintain the UI state
@@ -55,10 +55,10 @@ public class ListingViewModel  {
         landmarkRemarkService = LandmarkRemarkService()
         
         // if the user is logged-in, get a reference to the Parse managed user and extract the username in a property directly accessed by the view-controller
-        if PFUser.currentUser() != nil {
+        if PFUser.current() != nil {
             // should be always not nil at this point of time because user was already logged in
-            user = PFUser.currentUser()
-            currentUserName = (PFUser.currentUser()?.username)!
+            user = PFUser.current()
+            currentUserName = (PFUser.current()?.username)!
         }
     }
     
@@ -71,7 +71,7 @@ public class ListingViewModel  {
     /**
      To retrieve te list of landmarks and pass back the results to the view-controller
      */
-    public func getAllLandmarks() {
+    open func getAllLandmarks() {
 
         // call the service layer
         // passing unowned self and weak delegate to break any possible retain cycle (for safety)
@@ -101,7 +101,7 @@ public class ListingViewModel  {
      - parameter landmarkId: The Id of the landmark
      - parameter newNote:    The new note content
      */
-    public func updateRemarkForLandmark(landmarkId: String, newNote: String) {
+    open func updateRemarkForLandmark(_ landmarkId: String, newNote: String) {
         if user == nil { // this would never happen
             delegate?.operationFailureWithErrorMessage("Error", message: "Cannot update landmark because user login session has been expired or some unknown error occurred.")
         }
@@ -116,15 +116,15 @@ public class ListingViewModel  {
                     let updatedAnnotation = AnnotationViewModel(landmark: landmark!, currentLogedInUsername: self.currentUserName)
                     
                     var foundIndex = -1
-                    for (index, item) in self.landmarks.enumerate() {
+                    for (index, item) in self.landmarks.enumerated() {
                         if item.landmarkId == landmarkId {
                             foundIndex = index
                             break
                         }
                     }
                     if foundIndex >= 0 {
-                        self.landmarks.insert(updatedAnnotation, atIndex: foundIndex)
-                        self.landmarks.removeAtIndex(foundIndex+1)
+                        self.landmarks.insert(updatedAnnotation, at: foundIndex)
+                        self.landmarks.remove(at: foundIndex+1)
                     }
                     delegate?.landmarkUpdateWithSuccess("The landmark was updated with new remark.")
                 }
@@ -159,7 +159,7 @@ public class ListingViewModel  {
      - parameter landmarkId: The landmark id of teh landmark to be deleted by its ownner
      - parameter swipeDeleteIndex: To indicate this delete action was taken by left swipe geture on the table view, if so the row number is necessary to pass back to the view controller
      */
-    public func deleteLandmark(landmarkId: String, swipeDeleteIndex: Int = -1) {
+    open func deleteLandmark(_ landmarkId: String, swipeDeleteIndex: Int = -1) {
         if user == nil { // this would never happen
             delegate?.operationFailureWithErrorMessage("Error", message: "Cannot delete landmark because user login session has been expired or some unknown error occurred.")
         }
@@ -170,14 +170,14 @@ public class ListingViewModel  {
                 if success {
                     // after deleting, find the child view model and remove from aray so that UI can be updated
                     var foundIndex = -1
-                    for (index, item) in self.landmarks.enumerate() {
+                    for (index, item) in self.landmarks.enumerated() {
                         if item.landmarkId == landmarkId {
                             foundIndex = index
                             break
                         }
                     }
                     if foundIndex >= 0 {
-                        self.landmarks.removeAtIndex(foundIndex)
+                        self.landmarks.remove(at: foundIndex)
                     }
                     delegate?.landmarDeleteWithSuccess("The landark was deleted.", swipeDeleteIndex: swipeDeleteIndex)
                 }
@@ -208,7 +208,7 @@ public class ListingViewModel  {
     /**
      To log out the user
      */
-    public func logout() {
+    open func logout() {
         authenticationService.logoutUser { [weak delegate = self.delegate!] (error) in
             // pass back either success or error info back to the view-controller via the delegate
             if error == nil {
@@ -227,9 +227,9 @@ public class ListingViewModel  {
      - parameter searchText: The search text enetered by the user on the UI (passed from view-controller)
      - parameter scope:      The scope (segmented control) selected on the UI (passed from view-controller)
      */
-    public func filterContentForSearchTextAndScope(searchText: String, scope: String = "All") {
+    open func filterContentForSearchTextAndScope(_ searchText: String, scope: String = "All") {
         
-        let cleanSearchText = searchText.trim().condenseWhitespace().lowercaseString
+        let cleanSearchText = searchText.trim().condenseWhitespace().lowercased()
         
         filteredLandmarks = landmarks.filter({ (annotation) -> Bool in
             
@@ -240,8 +240,8 @@ public class ListingViewModel  {
                 
                 if scopeMatch {
                     
-                    if ((annotation.title?.trim().condenseWhitespace().lowercaseString.containsString(cleanSearchText))!
-                        || (annotation.subtitle?.trim().condenseWhitespace().lowercaseString.containsString(cleanSearchText))!) {
+                    if ((annotation.title?.trim().condenseWhitespace().lowercased().contains(cleanSearchText))!
+                        || (annotation.subtitle?.trim().condenseWhitespace().lowercased().contains(cleanSearchText))!) {
                         return true
                     }
                 }

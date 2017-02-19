@@ -8,6 +8,30 @@
 
 import UIKit
 import Parse
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 
 /// The view controller for login and signup process
@@ -34,7 +58,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
     // activity spinner
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    var viewsToAnimate: [UIView!]!
+    var viewsToAnimate: [UIView?]!
     var hideOffset: CGFloat = -220.0
     
     // the view-model
@@ -48,15 +72,15 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
         super.viewDidLoad()
         
         // check for device type and adjust the UI to make it adaptive for all iOS devices (iPhone /iPad)
-        if UIDevice.currentDevice().getDeviceType() == .iPhone4  {
+        if UIDevice.current.getDeviceType() == .iPhone4  {
             loginAreaTopConstraint.constant = 50.0
             hideOffset = -160.0
         }
-        else if  UIDevice.currentDevice().getDeviceType() == .iPhone5 {
+        else if  UIDevice.current.getDeviceType() == .iPhone5 {
             loginAreaTopConstraint.constant = 70.0
             hideOffset = -180.0
         }
-        else if UIDevice.currentDevice().getDeviceType() == .iPhone6 {
+        else if UIDevice.current.getDeviceType() == .iPhone6 {
             hideOffset = -200.0
             loginAreaTopConstraint.constant = 110.0
         }
@@ -65,11 +89,11 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
             loginAreaTopConstraint.constant = 110.0
         }
         
-        if UIDevice.currentDevice().isDeviceiPad() {
+        if UIDevice.current.isDeviceiPad() {
             hideOffset = -320.0
             logoTopContraint.constant = 100.0
             loginAreaTopConstraint.constant = 160.0
-            if UIDevice.currentDevice().getDeviceType() == .iPadPro {
+            if UIDevice.current.getDeviceType() == .iPadPro {
                 hideOffset = -420.0
             }
         }
@@ -87,21 +111,21 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
         viewModel = LoginSignUpViewModel(delegate: self)
         
         // add listeners on the inout text to listen for editing chnage event
-        usernameTextField.addTarget(self, action: #selector(LoginSignupViewController.userNameChanged), forControlEvents: UIControlEvents.EditingChanged)
-        passwordTextField.addTarget(self, action: #selector(LoginSignupViewController.passwordChanged), forControlEvents: UIControlEvents.EditingChanged)
+        usernameTextField.addTarget(self, action: #selector(LoginSignupViewController.userNameChanged), for: UIControlEvents.editingChanged)
+        passwordTextField.addTarget(self, action: #selector(LoginSignupViewController.passwordChanged), for: UIControlEvents.editingChanged)
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // if a current logged in user exists on the disk, the user is already logged in
-        if PFUser.currentUser() != nil {
-            self.performSegueWithIdentifier("loadMapPageSegue", sender: nil)
+        if PFUser.current() != nil {
+            self.performSegue(withIdentifier: "loadMapPageSegue", sender: nil)
         }
         
         // animate te views to set their alpha to 1.0
-        UIView.animateWithDuration(0.5, delay: 0.3, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.setAlphaForViews(1.0)
         }, completion: nil)
         
@@ -112,11 +136,11 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
     // --------------------------------------------
     
     // status bar preference
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 
@@ -126,17 +150,17 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
     // MARK :- user Actions on the UI
     // -------------------------------
     
-    @IBAction func noAccountClickedAction(sender: AnyObject) {
+    @IBAction func noAccountClickedAction(_ sender: AnyObject) {
         
         if signupModeActivated == false {
             let alert = Utils.createCustomAlert("Not Signed up yet?", message: "It's very simple. Just choose a simple username and a password and then Signup.")
-            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         toggleSignUpMode()
     }
     
-    @IBAction func loginOrSignupAction(sender: AnyObject) {
+    @IBAction func loginOrSignupAction(_ sender: AnyObject) {
         performLoginOrSignupAction()
     }
     
@@ -154,7 +178,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
         viewModel.password = passwordTextField.text!
     }
     
-    private func performLoginOrSignupAction() {
+    fileprivate func performLoginOrSignupAction() {
         dissmissAnyKeyboard()
         showActivityLoader()
         if signupModeActivated {
@@ -166,10 +190,10 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
     }
     
     // to show an alert pop-up
-    private func displayAlert(title:String, message:String) {
+    fileprivate func displayAlert(_ title:String, message:String) {
         let alert = Utils.createCustomAlert(title, message: message)
-        alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
         
     }
     
@@ -178,31 +202,31 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
         activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     func stopActivityLoader() {
         activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
-    func setAlphaForViews(value: CGFloat) {
-        dispatch_async(dispatch_get_main_queue(), {
+    func setAlphaForViews(_ value: CGFloat) {
+        DispatchQueue.main.async(execute: {
             for view in self.viewsToAnimate {
-                view.alpha = value
+                view?.alpha = value
             }
         })
     }
     
     // to dissmss any keyboard
     func dissmissAnyKeyboard() {
-        if usernameTextField.isFirstResponder() {
+        if usernameTextField.isFirstResponder {
             usernameTextField.resignFirstResponder()
         }
-        if passwordTextField.isFirstResponder() {
+        if passwordTextField.isFirstResponder {
             passwordTextField.resignFirstResponder()
         }
     }
@@ -211,16 +235,16 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
     func toggleSignUpMode(){
         if signupModeActivated {
             signupModeActivated = false
-            dispatch_async(dispatch_get_main_queue(), {
-                self.dontHaveAccountButton.setImage(UIImage(named: "Dont have account"), forState: UIControlState.Normal)
-                self.loginOrSignupButton.setImage(UIImage(named: "Login"), forState: UIControlState.Normal)
+            DispatchQueue.main.async(execute: {
+                self.dontHaveAccountButton.setImage(UIImage(named: "Dont have account"), for: UIControlState())
+                self.loginOrSignupButton.setImage(UIImage(named: "Login"), for: UIControlState())
             })
         }
         else {
             signupModeActivated = true
-            dispatch_async(dispatch_get_main_queue(), {
-                self.dontHaveAccountButton.setImage(UIImage(named: "Already have account"), forState: UIControlState.Normal)
-                self.loginOrSignupButton.setImage(UIImage(named: "Signup"), forState: UIControlState.Normal)
+            DispatchQueue.main.async(execute: {
+                self.dontHaveAccountButton.setImage(UIImage(named: "Already have account"), for: UIControlState())
+                self.loginOrSignupButton.setImage(UIImage(named: "Signup"), for: UIControlState())
             })
         }
     }
@@ -230,19 +254,19 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
     // MARK :- UITextFieldDelegate methods
     // ------------------------------------
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
         // as soon as an user iuput is selected, jump up the user input area to avoid being hidden under keyboard
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             if textField == self.usernameTextField ||  textField == self.passwordTextField {
                 self.setAlphaForViews(0.0)
                 self.logoTopContraint.constant = self.hideOffset
                 self.logoImageView.setNeedsUpdateConstraints()
                 self.view!.setNeedsUpdateConstraints()
                 
-                UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                     for view in self.viewsToAnimate {
-                        view.layoutIfNeeded()
+                        view?.layoutIfNeeded()
                     }
                     self.setAlphaForViews(1.0)
                     }, completion: { done in
@@ -251,7 +275,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
         })
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // beahviour of the return key button
         if textField == usernameTextField {
             textField.resignFirstResponder()
@@ -286,9 +310,9 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
 
     }
     
-    func loginSuccessWithUser(user: PFUser) {
+    func loginSuccessWithUser(_ user: PFUser) {
         stopActivityLoader()
-        self.performSegueWithIdentifier("loadMapPageSegue", sender: nil)
+        self.performSegue(withIdentifier: "loadMapPageSegue", sender: nil)
     }
     
     func signupSuccess() {
@@ -298,7 +322,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate, LoginSig
         usernameTextField.becomeFirstResponder()
     }
     
-    func operationFailureWithErrorMessage(title: String, message: String) {
+    func operationFailureWithErrorMessage(_ title: String, message: String) {
         stopActivityLoader()
         displayAlert(title, message: message)
     }

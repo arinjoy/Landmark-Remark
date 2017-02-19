@@ -27,7 +27,7 @@ public extension UIDevice {
      To check whether the current device is an iPad
      */
     func isDeviceiPad() -> Bool {
-        return UIDevice.currentDevice().model.rangeOfString("iPad") != nil
+        return UIDevice.current.model.range(of: "iPad") != nil
     }
     
 
@@ -36,7 +36,7 @@ public extension UIDevice {
      */
     func getDeviceType() -> DeviceType {
         
-        let screenHeight = UIScreen.mainScreen().bounds.height
+        let screenHeight = UIScreen.main.bounds.height
         
         if self.isDeviceiPad() == false {
             
@@ -73,16 +73,16 @@ extension String
      */
     func trim() -> String
     {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
     
     /**
      To condense while spaces wihtin the string
      */
     func condenseWhitespace() -> String {
-        let components = self.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let components = self.components(separatedBy: CharacterSet.whitespaces)
         let filtered = components.filter({!$0.isEmpty})
-        return filtered.joinWithSeparator(" ")
+        return filtered.joined(separator: " ")
     }
     
 }
@@ -96,7 +96,7 @@ extension String
 /**
  An utility class that is being used as a factory for genric utilities required throughout the project
  */
-public class Utils {
+open class Utils {
     
     /**
      To execute a block of code within main thread after a specific delay in seconds
@@ -104,13 +104,9 @@ public class Utils {
      - parameter delay:   delay amount in seconds
      - parameter closure: closure / block of coe to run after the delay
      */
-    class func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
+    class func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
     
@@ -122,15 +118,15 @@ public class Utils {
      
      - returns: The customised alert controller instance in default alert style
      */
-    class func createCustomAlert(title: String, message: String) -> UIAlertController {
+    class func createCustomAlert(_ title: String, message: String) -> UIAlertController {
         
         let titleFont: UIFont = Font.avenir20D!
         let messageFont: UIFont =  Font.avenir16M!
         
-        let attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName :  titleFont, NSForegroundColorAttributeName : UIColor.darkGrayColor()])
-        let attributedMessage = NSAttributedString(string: message, attributes: [NSFontAttributeName : messageFont, NSForegroundColorAttributeName : UIColor.darkGrayColor()])
+        let attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName :  titleFont, NSForegroundColorAttributeName : UIColor.darkGray])
+        let attributedMessage = NSAttributedString(string: message, attributes: [NSFontAttributeName : messageFont, NSForegroundColorAttributeName : UIColor.darkGray])
         
-        let alert = UIAlertController(title: "", message: "",  preferredStyle: .Alert)
+        let alert = UIAlertController(title: "", message: "",  preferredStyle: .alert)
         
         alert.setValue(attributedTitle, forKey: "attributedTitle")
         alert.setValue(attributedMessage, forKey: "attributedMessage")
@@ -147,15 +143,15 @@ public class Utils {
      
      - returns: The customised alert controller instance in action sheet style
      */
-    class func createCustomActionSheetAlert(title: String, message: String) -> UIAlertController {
+    class func createCustomActionSheetAlert(_ title: String, message: String) -> UIAlertController {
         
         let titleFont: UIFont = Font.avenir20D!
         let messageFont: UIFont = Font.avenir16M!
         
-        let attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName :  titleFont, NSForegroundColorAttributeName : UIColor.darkGrayColor()])
-        let attributedMessage = NSAttributedString(string: message, attributes: [NSFontAttributeName : messageFont, NSForegroundColorAttributeName : UIColor.darkGrayColor()])
+        let attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName :  titleFont, NSForegroundColorAttributeName : UIColor.darkGray])
+        let attributedMessage = NSAttributedString(string: message, attributes: [NSFontAttributeName : messageFont, NSForegroundColorAttributeName : UIColor.darkGray])
         
-        let alert = UIAlertController(title: "", message: "",  preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "", message: "",  preferredStyle: .actionSheet)
         
         alert.setValue(attributedTitle, forKey: "attributedTitle")
         alert.setValue(attributedMessage, forKey: "attributedMessage")
@@ -172,9 +168,9 @@ public class Utils {
     
     class func determineTableCellHeight() -> CGFloat {
         
-        let screenHeight = UIScreen.mainScreen().bounds.height
+        let screenHeight = UIScreen.main.bounds.height
         
-        if UIDevice.currentDevice().isDeviceiPad()
+        if UIDevice.current.isDeviceiPad()
         {
             return max(180, (screenHeight - 110) / 4)
         }

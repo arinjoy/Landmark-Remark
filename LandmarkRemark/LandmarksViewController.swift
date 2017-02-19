@@ -62,30 +62,30 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
         
         // Setup the search bar
         searchController.searchBar.scopeButtonTitles = ["All", "Mine", "Others"]
-        searchController.searchBar.searchBarStyle = .Prominent
+        searchController.searchBar.searchBarStyle = .prominent
         searchController.searchBar.barTintColor = Color.veryLightGreenColor
-        searchController.searchBar.keyboardType = .Default
-        searchController.searchBar.autocorrectionType = .No
-        searchController.searchBar.autocapitalizationType = .None
+        searchController.searchBar.keyboardType = .default
+        searchController.searchBar.autocorrectionType = .no
+        searchController.searchBar.autocapitalizationType = .none
         
         // add the search controller to its holding view
         searchControllerHolderView.addSubview(self.searchController.searchBar)
         
         
         // check for device type and adjust the UI to make it adaptive for all iOS devices (iPhone /iPad)
-        if UIDevice.currentDevice().getDeviceType() == .iPhone4 {
+        if UIDevice.current.getDeviceType() == .iPhone4 {
             mapViewHeightConstraint.constant = -20.0
         }
-        else if UIDevice.currentDevice().getDeviceType() == .iPhone5 {
+        else if UIDevice.current.getDeviceType() == .iPhone5 {
             mapViewHeightConstraint.constant = 25.0
         }
-        else if UIDevice.currentDevice().getDeviceType() == .iPhone6 {
+        else if UIDevice.current.getDeviceType() == .iPhone6 {
             mapViewHeightConstraint.constant = 70.0
         }
         else {
             mapViewHeightConstraint.constant = 100.0
         }
-        if UIDevice.currentDevice().isDeviceiPad() {
+        if UIDevice.current.isDeviceiPad() {
             mapViewHeightConstraint.constant = 200.0
         }
         
@@ -98,7 +98,7 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
 
         // by deafult location is always being updated and the blue arrow button is enabled to indicate this
         currentlyUpdatingLocation = true
-        currentLocationToggleButton.setImage(Icon.updateLocationEnabledImage, forState: UIControlState.Normal)
+        currentLocationToggleButton.setImage(Icon.updateLocationEnabledImage, for: UIControlState())
         
         // setting up mapview delegate
         mapView.delegate = self
@@ -117,48 +117,48 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
          checking for that boundary only to help/guide the user with relevant landamarks only (not too many irrelevant ones which are too far from the user)
          */
         
-        let preferences = NSUserDefaults.standardUserDefaults()
-        if preferences.objectForKey("BOUNDARY_PREFERENCE") == nil {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: "BOUNDARY_PREFERENCE") == nil {
             // default search strategy is the entire planet
             boundarySegmentedControl.selectedSegmentIndex = 3
-            preferences.setInteger(2, forKey: "BOUNDARY_PREFERENCE")
+            preferences.set(2, forKey: "BOUNDARY_PREFERENCE")
             preferences.synchronize()
         }
         else {
-            let savedValue = preferences.integerForKey("BOUNDARY_PREFERENCE")
+            let savedValue = preferences.integer(forKey: "BOUNDARY_PREFERENCE")
             boundarySegmentedControl.selectedSegmentIndex = savedValue
         }
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // display the logged-in user name at the bottom of the UI
         userNameLabel.text = viewModel.currentUserName
         
         switch boundarySegmentedControl.selectedSegmentIndex {
-            case 0: viewModel.selectedBoundary = .ONE_KM
-            case 1: viewModel.selectedBoundary = .TEN_KM
-            case 2: viewModel.selectedBoundary = .HUNDRED_KM
-            case 3: viewModel.selectedBoundary = .ENTIRE_PLANET
+            case 0: viewModel.selectedBoundary = .one_KM
+            case 1: viewModel.selectedBoundary = .ten_KM
+            case 2: viewModel.selectedBoundary = .hundred_KM
+            case 3: viewModel.selectedBoundary = .entire_PLANET
             default: break
         }
         
         // if for some reason location service setting was turned off (denied) by the user from the app settings, prompt the user that the usgae of location service is manadatory
-        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.NotDetermined &&
-            (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Restricted) {
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.notDetermined &&
+            (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.restricted) {
             let alert = Utils.createCustomAlert("Warning", message: "Access to Location Service has been denied or restricted. Please go to settings and change permission.")
-            let settingsAction: UIAlertAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction) in
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+            let settingsAction: UIAlertAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction) in
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
             })
             alert.addAction(settingsAction)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
         // animate the alpha value of user name hint
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.userNameLabel.alpha = 1.0
             }, completion: nil)
         
@@ -169,8 +169,8 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
     // --------------------------------------------
     
     // status bar preference
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     
 
@@ -179,26 +179,26 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
     // MARK :- user Actions on the UI
     // -------------------------------
 
-    @IBAction func refreshLandmarksAction(sender: AnyObject) {
+    @IBAction func refreshLandmarksAction(_ sender: AnyObject) {
         showActivityLoader()
         
         // ask the view-model to load the landmarks
         viewModel.getAllLandmarks()
     }
     
-    @IBAction func logoutAction(sender: AnyObject) {
+    @IBAction func logoutAction(_ sender: AnyObject) {
         let alertMenu = Utils.createCustomActionSheetAlert("", message: "Are you sure that you want to log out?")
-        let okAction = UIAlertAction(title: "Confirm", style: .Destructive) {
+        let okAction = UIAlertAction(title: "Confirm", style: .destructive) {
             (action: UIAlertAction!) -> Void in
             self.showActivityLoader()
             self.viewModel.logout()
         }
         alertMenu.addAction(okAction)
-        alertMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        if UIDevice.currentDevice().isDeviceiPad() {
+        alertMenu.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        if UIDevice.current.isDeviceiPad() {
             alertMenu.popoverPresentationController?.barButtonItem = logoutButton
         }
-        self.presentViewController(alertMenu, animated: true, completion: nil)
+        self.present(alertMenu, animated: true, completion: nil)
     }
     
     
@@ -206,7 +206,7 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
     // to 500 m ter boundary, and user might feel difficulty while he is not static and onteh move but also trying to zoom in some section of the map
     // the blue arrorw head o the bottom-right side of the map is used for this purpose
     
-    @IBAction func toggleUpdateCurrentLocation(sender: AnyObject) {
+    @IBAction func toggleUpdateCurrentLocation(_ sender: AnyObject) {
         currentlyUpdatingLocation = !self.currentlyUpdatingLocation
         if currentlyUpdatingLocation {
             startUpdatingCurrentLocation()
@@ -216,25 +216,25 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
         }
     }
     
-    @IBAction func boundaryChangeAction(sender: AnyObject) {
+    @IBAction func boundaryChangeAction(_ sender: AnyObject) {
         // user is chnaging boundary preference
         switch self.boundarySegmentedControl.selectedSegmentIndex {
-            case 0 : viewModel.selectedBoundary = BoundaryRange.ONE_KM
-            case 1 : viewModel.selectedBoundary = BoundaryRange.TEN_KM
-            case 2 : viewModel.selectedBoundary = BoundaryRange.HUNDRED_KM
-            case 3 : viewModel.selectedBoundary = BoundaryRange.ENTIRE_PLANET
+            case 0 : viewModel.selectedBoundary = BoundaryRange.one_KM
+            case 1 : viewModel.selectedBoundary = BoundaryRange.ten_KM
+            case 2 : viewModel.selectedBoundary = BoundaryRange.hundred_KM
+            case 3 : viewModel.selectedBoundary = BoundaryRange.entire_PLANET
             default: break
         }
         
         // save the user preference, see comment above at teh bottom of the viewDidLoad mehtod
-        let preferences = NSUserDefaults.standardUserDefaults()
-        preferences.setInteger(self.boundarySegmentedControl.selectedSegmentIndex, forKey: "BOUNDARY_PREFERENCE")
+        let preferences = UserDefaults.standard
+        preferences.set(self.boundarySegmentedControl.selectedSegmentIndex, forKey: "BOUNDARY_PREFERENCE")
         preferences.synchronize()
         self.displayAlert("Information", message: "Landmarks data will be confined within your selected boundary radius when you perform a network refresh using the top-left refresh button.")
     }
     
     
-    @IBAction func saveLandmarkAction(sender: AnyObject) {
+    @IBAction func saveLandmarkAction(_ sender: AnyObject) {
         self.performSaveLandmarkWithAlert("Saving a Landmark?", message: "\nYou're going to add a landmark at your current location. \n\nPlease enter a short note.", isUpdating: false)
     }
     
@@ -246,21 +246,21 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
     
     func stopUpdatingCurrentLocation() {
         currentlyUpdatingLocation = false
-        currentLocationToggleButton.setImage(Icon.updateLocationDisabledImage, forState: UIControlState.Normal)
+        currentLocationToggleButton.setImage(Icon.updateLocationDisabledImage, for: UIControlState())
         locationManager.stopUpdatingLocation()
         mapView.showsUserLocation = false
     }
     
     func startUpdatingCurrentLocation() {
         currentlyUpdatingLocation = true
-        currentLocationToggleButton.setImage(Icon.updateLocationEnabledImage, forState: UIControlState.Normal)
+        currentLocationToggleButton.setImage(Icon.updateLocationEnabledImage, for: UIControlState())
         locationManager.startUpdatingLocation()
         // as soon as location update is happening zoom into the region
         setMapRegion(viewModel.latestUpdatedLocation.coordinate, distance: 500)
         mapView.showsUserLocation = true
     }
     
-    func setMapRegion(location: CLLocationCoordinate2D, distance: CLLocationDistance) {
+    func setMapRegion(_ location: CLLocationCoordinate2D, distance: CLLocationDistance) {
         let region:MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location, distance, distance)
         mapView.setRegion(mapView.regionThatFits(region), animated: true)
     }
@@ -273,16 +273,16 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
      - parameter isUpdating:         To indicate whther it is an update
      - parameter updatinglandMarkId: If being updated, the landmark Id is necessary
      */
-    func performSaveLandmarkWithAlert(title: String, message: String, isUpdating: Bool = false, updatinglandMarkId: String = "") {
+    func performSaveLandmarkWithAlert(_ title: String, message: String, isUpdating: Bool = false, updatinglandMarkId: String = "") {
         
         // inactivate the search controller UI
         searchController.searchBar.resignFirstResponder()
         searchController.searchBar.selectedScopeButtonIndex = 0
-        searchController.active = false
+        searchController.isActive = false
         
         let alertController = Utils.createCustomAlert(title, message: message)
         
-        let saveAction = UIAlertAction(title: "Save", style: .Default) { (_) in
+        let saveAction = UIAlertAction(title: "Save", style: .default) { (_) in
             let noteTextField = alertController.textFields![0] as UITextField
             self.showActivityLoader()
             if isUpdating {
@@ -293,49 +293,49 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
             }
         }
         // by default save button action is disbaled util the user types 3 or kore characters
-        saveAction.enabled = false
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        saveAction.isEnabled = false
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        alertController.addTextField { (textField) in
             // customize the text field
             textField.placeholder = isUpdating ? "Update your note here..." : "Type your note here..."
-            textField.keyboardType = .Default
-            textField.autocorrectionType = .Yes
-            textField.autocapitalizationType = .Sentences
-            textField.returnKeyType = .Done
-            textField.clearButtonMode = .WhileEditing
+            textField.keyboardType = .default
+            textField.autocorrectionType = .yes
+            textField.autocapitalizationType = .sentences
+            textField.returnKeyType = .done
+            textField.clearButtonMode = .whileEditing
             
             // bind the text chnage observer and enable the action abutton
-            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                saveAction.enabled = textField.text!.trim().condenseWhitespace().characters.count >= 3
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+                saveAction.isEnabled = textField.text!.trim().condenseWhitespace().characters.count >= 3
             }
         }
         
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func showActivityLoader() {
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
-        activityIndicator.center = CGPointMake(self.view.center.x, (self.view.center.y - 0))
+        activityIndicator.center = CGPoint(x: self.view.center.x, y: (self.view.center.y - 0))
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         self.view.addSubview(activityIndicator)
-        self.view.bringSubviewToFront(activityIndicator)
+        self.view.bringSubview(toFront: activityIndicator)
         activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     func stopActivityLoader() {
         activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
-    func displayAlert(title:String, message:String) {
+    func displayAlert(_ title:String, message:String) {
         let alert = Utils.createCustomAlert(title, message: message)
-        alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
         
     }
     
@@ -386,12 +386,12 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
     func logoutSuccess() {
         Utils.delay(1.5) {
             self.stopActivityLoader()
-            self.navigationController?.navigationBar.hidden = true
-            self.performSegueWithIdentifier("backToLoginScreenFromMapSegue", sender: self)
+            self.navigationController?.navigationBar.isHidden = true
+            self.performSegue(withIdentifier: "backToLoginScreenFromMapSegue", sender: self)
         }
     }
     
-    func landmarkSaveOrDeleteWithSuccess(message: String) {
+    func landmarkSaveOrDeleteWithSuccess(_ message: String) {
         Utils.delay(1.5) {
             self.stopActivityLoader()
             self.displayAlert("Success", message: message)
@@ -399,32 +399,32 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
         }
     }
     
-    func getAllLandmarkWithSuccess(count: Int) {
+    func getAllLandmarkWithSuccess(_ count: Int) {
         Utils.delay(1.5) {
             self.stopActivityLoader()
             // showing user a message about how many landmarks located based on the boundary preference
             let countVal: String = count > 0 ? "\(count)" : "No"
             var message = "\(countVal) landmarks located after searching globally everywhere."
-            if self.viewModel.selectedBoundary != .ENTIRE_PLANET {
+            if self.viewModel.selectedBoundary != .entire_PLANET {
                 var distance = "1 km"
                 switch self.viewModel.selectedBoundary {
-                    case .ONE_KM : distance = "1 km"
-                    case .TEN_KM : distance = "10 km"
-                    case .HUNDRED_KM : distance = "100 km"
+                    case .one_KM : distance = "1 km"
+                    case .ten_KM : distance = "10 km"
+                    case .hundred_KM : distance = "100 km"
                     default: break
                 }
                 message = "\(countVal) landmarks located after searching \(distance) radius from your current location."
             }
             self.displayAlert("Information", message: message)
             if count > 0 {
-                self.searchController.active = false
+                self.searchController.isActive = false
                 self.searchController.searchBar.text = ""
                 self.reloadAnnotations()
             }
         }
     }
     
-    func operationFailureWithErrorMessage(title: String, message: String) {
+    func operationFailureWithErrorMessage(_ title: String, message: String) {
         Utils.delay(1.5) {
             self.stopActivityLoader()
             self.displayAlert(title, message: message)
@@ -432,14 +432,14 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
     }
     
     func reloadAnnotations() {
-        if searchController.active {
+        if searchController.isActive {
             stopUpdatingCurrentLocation()
         }
         // remove existing annotations
         mapView.removeAnnotations(calculateAllNetworkSavedAnnotations())
         
         // add back the annotations back taking into consideration of any search
-        let targetAnnotations =  searchController.active  ? viewModel.filteredLandmarkAnnotations : viewModel.landmarkAnnotations
+        let targetAnnotations =  searchController.isActive  ? viewModel.filteredLandmarkAnnotations : viewModel.landmarkAnnotations
         mapView.addAnnotations(targetAnnotations)
         
         // setting the map region 500 meters around the first search result, searched geo-spatially from the nearest to farthest
@@ -456,11 +456,11 @@ class LandmarksViewController: UIViewController, LandmarksViewModelDelegate {
 
 extension LandmarksViewController: CLLocationManagerDelegate {
    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0]
 
         // ass soon as a location updated, pass this information to the other list view controller
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateLocation", object: userLocation)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "UpdateLocation"), object: userLocation)
         
         // if a new location is received, update the location and relocate the human indicator
         if viewModel.latestUpdatedLocation.coordinate.latitude != userLocation.coordinate.latitude || viewModel.latestUpdatedLocation.coordinate.longitude != userLocation.coordinate.longitude {
@@ -499,13 +499,13 @@ extension LandmarksViewController: CLLocationManagerDelegate {
 //---------------------------------------------------
 extension LandmarksViewController: UISearchBarDelegate {
     
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         
         // as soon as the scope button selection chnaged ("All", "Mine", "Others"), ask te view model to search
         viewModel.filterContentForSearchTextAndScope(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         // as soon as the search cancel button hit, chnage the scpe back to "All", and start uodating the user location just
         // in case user has turned it off to zoom into the map
@@ -522,7 +522,7 @@ extension LandmarksViewController: UISearchBarDelegate {
 //---------------------------------------------------
 extension LandmarksViewController: UISearchResultsUpdating {
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         // as soon as tthe text chnages on the search bar, ask te view model to search
         let searchBar = searchController.searchBar
@@ -539,7 +539,7 @@ extension LandmarksViewController: UISearchResultsUpdating {
 //---------------------------------------------------
 extension LandmarksViewController: MKMapViewDelegate {
 
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if let annotation = annotation as? AnnotationViewModel {
             
@@ -567,19 +567,19 @@ extension LandmarksViewController: MKMapViewDelegate {
             
             var view: MKAnnotationView
             // try to dequeue the view
-            if let dequeuedView  = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)  {
+            if let dequeuedView  = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)  {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: 0, y: -5)
-                let disclosureButton = UIButton(frame: CGRectMake(0, 0, 33, 22))
-                disclosureButton.setImage(Icon.detailDisclosure, forState: UIControlState.Normal)
+                let disclosureButton = UIButton(frame: CGRect(x: 0, y: 0, width: 33, height: 22))
+                disclosureButton.setImage(Icon.detailDisclosure, for: UIControlState())
                 view.rightCalloutAccessoryView =   disclosureButton as UIView
                 view.rightCalloutAccessoryView?.tintColor = Color.darkGreenColor
-                view.rightCalloutAccessoryView?.tintAdjustmentMode = .Normal
-                view.centerOffset = CGPointMake(0, -25)
+                view.rightCalloutAccessoryView?.tintAdjustmentMode = .normal
+                view.centerOffset = CGPoint(x: 0, y: -25)
                 
                 // assign the correct annotation pin mage
                 view.image = targetAnnotationImage
@@ -590,7 +590,7 @@ extension LandmarksViewController: MKMapViewDelegate {
     }
     
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         let annotation = view.annotation as! AnnotationViewModel
         
@@ -602,12 +602,12 @@ extension LandmarksViewController: MKMapViewDelegate {
             let alertController = Utils.createCustomAlert(alertTitle, message: annotation.title!)
             
             // To open up the Apple's Maps app with the location
-            let gotoMapAction = UIAlertAction(title: "Show in Maps", style: UIAlertActionStyle.Default) { (_) in
+            let gotoMapAction = UIAlertAction(title: "Show in Maps", style: UIAlertActionStyle.default) { (_) in
                 // open the Maps app to get the driving directions
                 let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-                annotation.mapItem().openInMapsWithLaunchOptions(launchOptions)
+                annotation.mapItem().openInMaps(launchOptions: launchOptions)
             }
-            let cancelAction = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
             alertController.addAction(gotoMapAction)
             alertController.addAction(cancelAction)
             
@@ -615,38 +615,38 @@ extension LandmarksViewController: MKMapViewDelegate {
             if annotation.userName == viewModel.currentUserName {
                 
                 // create the update action
-                let updateAction = UIAlertAction(title: "Edit", style: UIAlertActionStyle.Default) { (_) in
+                let updateAction = UIAlertAction(title: "Edit", style: UIAlertActionStyle.default) { (_) in
                     self.performSaveLandmarkWithAlert("Editing this landmark?", message: "Please change the existing note/remark.", isUpdating: true, updatinglandMarkId: annotation.landmarkId!)
                 }
                 alertController.addAction(updateAction)
                 
                 // create the delete action
-                let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive) { (_) in
+                let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (_) in
                     self.searchController.searchBar.resignFirstResponder()
                     self.searchController.searchBar.selectedScopeButtonIndex = 0
-                    self.searchController.active = false
+                    self.searchController.isActive = false
                     self.showActivityLoader()
                     self.viewModel.deleteLandmark(annotation.landmarkId!)
                 }
                 alertController.addAction(deleteAction)
             }
             // show the controller when call-out was tapped
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
     
     
-    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         
         // apply some animation as soon as the annotation sare being added on the map
         // alpha value chnages and a little jump happens
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             for annView in views {
                 let endFrame = annView.frame
                 annView.alpha = 0.0
-                annView.frame = CGRectOffset(endFrame, 0, -5)
-                UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                annView.frame = endFrame.offsetBy(dx: 0, dy: -5)
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                     annView.frame = endFrame
                     annView.alpha = 1.0
                     }, completion: nil)

@@ -19,7 +19,7 @@ class UserAuthenticationService {
      - parameter password:          The password chosen by the user
      - parameter completionHandler: The completion block after asynchronous network call - to indicate success or failure with reasons
      */
-    func signupUser(username: String, password: String, completionHandler: (success: Bool, error: NSError?) -> Void) {
+    func signupUser(_ username: String, password: String, completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         
         // create an isntance of a new PFUser
         let user = PFUser()
@@ -27,9 +27,10 @@ class UserAuthenticationService {
         user.password = password
         
         // sign up using Parse SDK method
-        user.signUpInBackgroundWithBlock { (success, error) -> Void in
-            completionHandler(success: success, error: error)
+        user.signUpInBackground { (success: Bool, error: Error?) -> Void in
+            completionHandler(success, error as NSError?)
         }
+        
     }
     
     
@@ -40,13 +41,15 @@ class UserAuthenticationService {
      - parameter password:          The password provided ny user
      - parameter completionHandler: The completion block after asynchronous network call - to either return the user object or failure with reasons
      */
-    func loginUser(username: String, password: String, completionHandler: (user: PFUser?, error: NSError?) -> Void) {
+    func loginUser(username: String, password: String, completionHandler: @escaping (_ user: PFUser?, _ error: NSError?) -> Void) {
         
         // Login a user and try to retrieve the the user object from Parse if successful
-        PFUser.logInWithUsernameInBackground(username, password: password,  block: { (user, error) -> Void in
+        
+        PFUser.logInWithUsername(inBackground: username, password: password) {
+            (user: PFUser?, error: Error?) -> Void in
             
-            completionHandler(user: user, error: error)
-        })
+            completionHandler(user, error as NSError?)
+        }
     }
     
     
@@ -55,12 +58,13 @@ class UserAuthenticationService {
      
      - parameter completionHandler: The completion block after the asynchronous network call - to indicate success or failure with reasons
      */
-    func logoutUser(completionHandler: (error: NSError?) -> Void) {
+    func logoutUser(_ completionHandler: @escaping (_ error: NSError?) -> Void) {
         
-        // logout the current Parse user
-        PFUser.logOutInBackgroundWithBlock { (error) in
-            completionHandler(error: error)
+        // logout the current Parse user        
+        PFUser.logOutInBackground { (error: Error?) -> Void  in
+            completionHandler(error as NSError?)
         }
+        
     }
     
 }

@@ -47,13 +47,13 @@ class LandmarkCustomCell: UITableViewCell, MKMapViewDelegate {
      - parameter viewModel:       The view-model to bind
      - parameter currentUserName: The currently logged-in username to save as information to this class
      */
-    func bindViewModel(viewModel: AnyObject, currentUserName: String) {
+    func bindViewModel(_ viewModel: AnyObject, currentUserName: String) {
         
         self.currentUserName = currentUserName
         
         if let landmarkViewModel = viewModel as? AnnotationViewModel {
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 let region:MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(landmarkViewModel.coordinate, 2000, 2000)
                 
@@ -92,7 +92,7 @@ class LandmarkCustomCell: UITableViewCell, MKMapViewDelegate {
      
      - returns: The annotation view to display for the specified annotation or nil if you want to display a standard annotation view.
      */
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if let annotation = annotation as? AnnotationViewModel {
             // there could be two kinds of pin: current user landmark (purple) or other user landmark (red)
@@ -111,7 +111,7 @@ class LandmarkCustomCell: UITableViewCell, MKMapViewDelegate {
             var view: MKAnnotationView
             
             // try to re-use and deque the view
-            if let dequeuedView  = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)  {
+            if let dequeuedView  = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)  {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
@@ -119,7 +119,7 @@ class LandmarkCustomCell: UITableViewCell, MKMapViewDelegate {
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: 0, y: -2)
                 view.image = targetAnnotationImage
-                view.centerOffset = CGPointMake(0, -15)
+                view.centerOffset = CGPoint(x: 0, y: -15)
            }
             return view
         }
