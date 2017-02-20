@@ -6,30 +6,28 @@
 //  Copyright © 2017 Arinjoy Biswas. All rights reserved.
 //
 
-import XCTest
+import Quick
+import Nimble
+@testable import LandmarkRemark
 
-class LandmarkRemarkTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+class UtilsSpec: QuickSpec {
+    override func spec() {
+        describe("The String utilities") {
+
+            it("can trim extra spaces from left and right") {
+                let testString = "  A string with extra spaces   "
+                let trimmedString = "A string with extra spaces"
+                expect(testString.trim()).to(equal(trimmedString))
+            }
+        
+            context("when a string has extra spaaces in between") {
+                it("those spcaes are not getting trimmed off") {
+                    let testString = "  A string with extra spaces    in between"
+                    let trimmedString = "A string with extra spaces in between"
+                    expect(testString.trim()).notTo(equal(trimmedString))
+                }
+            }
+        
         }
     }
-    
 }
