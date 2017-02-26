@@ -11,11 +11,12 @@
 		0E2C6B331D03E028000CB8A1 /* AnnotationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C6B321D03E028000CB8A1 /* AnnotationViewModel.swift */; };
 		0E2C6B391D041C1C000CB8A1 /* LandmarkRemarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C6B381D041C1C000CB8A1 /* LandmarkRemarkService.swift */; };
 		0E2C6B3B1D043AF8000CB8A1 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C6B3A1D043AF8000CB8A1 /* ServiceHelper.swift */; };
-		0E5B989F1E5AE4D900FB7AAC /* LandmarkRemarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5B989E1E5AE4D900FB7AAC /* LandmarkRemarkTests.swift */; };
+		0E5B989F1E5AE4D900FB7AAC /* UtisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5B989E1E5AE4D900FB7AAC /* UtisTests.swift */; };
 		0E6192BB1D06CD50009D2B3E /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6192B91D06CD50009D2B3E /* ListingViewController.swift */; };
 		0E6192C51D06D023009D2B3E /* LandmarkCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6192C31D06D023009D2B3E /* LandmarkCustomCell.swift */; };
 		0E6192C61D06D023009D2B3E /* LandmarkCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E6192C41D06D023009D2B3E /* LandmarkCustomCell.xib */; };
 		0E6192C81D06D4DC009D2B3E /* ListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6192C71D06D4DC009D2B3E /* ListingViewModel.swift */; };
+		0EBDA6B71E6261B900216E34 /* LandmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBDA6B61E6261B900216E34 /* LandmarkTests.swift */; };
 		0EBF17531D02BFDD006E805E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF17521D02BFDD006E805E /* Utils.swift */; };
 		0EBF17551D02C0B4006E805E /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF17541D02C0B4006E805E /* Font.swift */; };
 		0EBF17571D02E1DC006E805E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF17561D02E1DC006E805E /* Color.swift */; };
@@ -51,12 +52,13 @@
 		0E2C6B3A1D043AF8000CB8A1 /* ServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		0E5B98871E5AE24900FB7AAC /* LandmarkRemarkTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LandmarkRemarkTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0E5B989C1E5AE4D900FB7AAC /* LandmarkRemarkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkRemarkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E5B989E1E5AE4D900FB7AAC /* LandmarkRemarkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRemarkTests.swift; sourceTree = "<group>"; };
+		0E5B989E1E5AE4D900FB7AAC /* UtisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtisTests.swift; sourceTree = "<group>"; };
 		0E5B98A01E5AE4D900FB7AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E6192B91D06CD50009D2B3E /* ListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
 		0E6192C31D06D023009D2B3E /* LandmarkCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandmarkCustomCell.swift; sourceTree = "<group>"; };
 		0E6192C41D06D023009D2B3E /* LandmarkCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandmarkCustomCell.xib; sourceTree = "<group>"; };
 		0E6192C71D06D4DC009D2B3E /* ListingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingViewModel.swift; sourceTree = "<group>"; };
+		0EBDA6B61E6261B900216E34 /* LandmarkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandmarkTests.swift; sourceTree = "<group>"; };
 		0EBF17521D02BFDD006E805E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0EBF17541D02C0B4006E805E /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		0EBF17561D02E1DC006E805E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -127,10 +129,27 @@
 		0E5B989D1E5AE4D900FB7AAC /* LandmarkRemarkTests */ = {
 			isa = PBXGroup;
 			children = (
-				0E5B989E1E5AE4D900FB7AAC /* LandmarkRemarkTests.swift */,
+				0EBDA6B51E62619E00216E34 /* Models */,
+				0EBDA6B41E61767600216E34 /* GenericHelpers */,
 				0E5B98A01E5AE4D900FB7AAC /* Info.plist */,
 			);
 			path = LandmarkRemarkTests;
+			sourceTree = "<group>";
+		};
+		0EBDA6B41E61767600216E34 /* GenericHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				0E5B989E1E5AE4D900FB7AAC /* UtisTests.swift */,
+			);
+			name = GenericHelpers;
+			sourceTree = "<group>";
+		};
+		0EBDA6B51E62619E00216E34 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0EBDA6B61E6261B900216E34 /* LandmarkTests.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		0EBF17511D02BFC8006E805E /* GenericHelpers */ = {
@@ -448,7 +467,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E5B989F1E5AE4D900FB7AAC /* LandmarkRemarkTests.swift in Sources */,
+				0E5B989F1E5AE4D900FB7AAC /* UtisTests.swift in Sources */,
+				0EBDA6B71E6261B900216E34 /* LandmarkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +691,7 @@
 				0E5B98A51E5AE4D900FB7AAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0ED348941D02A02800D160CB /* Build configuration list for PBXProject "LandmarkRemark" */ = {
 			isa = XCConfigurationList;
